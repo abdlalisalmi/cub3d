@@ -1,0 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
+/*   Updated: 2020/02/21 21:12:14 by aes-salm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void init_struct(t_struct *data)
+{
+	data->px = (float)WINDOW_WIDTH / 2.0F;
+	data->py = (float)WINDOW_HIGHT / 2.0F;
+    data->walk_direction = 0;
+    data->move_speed = 10;
+    data->turn_direction = 0;
+    data->turn_speed = 0.09F;
+    data->rotation = PI / 2;
+}
+
+// void update()
+// {
+    
+// }
+
+int    start_program(t_struct *data)
+{
+    if (!(data->connection_id = mlx_init()))
+        return (0);
+    if (!(data->window_id = mlx_new_window(data->connection_id, WINDOW_WIDTH, WINDOW_HIGHT, "Cub3d")))
+        return (0);
+    mlx_hook(data->window_id, 2, 0, keypress, data);
+    mlx_hook(data->window_id, 3, 0, keyrelease, data);
+    mlx_loop_hook(data->connection_id, update, data);
+    mlx_loop(data->connection_id);
+    return (0);
+}
+
+int     main()
+{
+    t_struct *data;
+
+    if (!(data = (t_struct*)malloc(sizeof(t_struct))))
+        return (0);
+    init_struct(data);
+    start_program(data);
+    return (EXIT_SUCCESS);
+}
+// esc 53
+//  126
+//123 124
+//  125
