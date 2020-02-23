@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 15:33:21 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/02/21 14:33:10 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/02/22 16:41:26 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,18 @@ const  int MAP[14][29] = {
     {1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1},
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 };
+
+int wall_check(float x, float y)
+{
+    int map_index_X;
+    int map_index_Y;
+
+    if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HIGHT)
+        return (1);
+    map_index_X = floor(x / SQUARE);
+    map_index_Y = floor(y / SQUARE);
+    return (MAP[map_index_Y][map_index_X] != 0);
+}
 
 void    draw_squar(t_struct *data, int x, int y)
 {
