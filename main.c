@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/02/23 21:48:49 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/02/26 20:51:44 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void init_struct(t_struct *data)
 {
-	data->px = (float)WINDOW_WIDTH / 2.0F;
-	data->py = (float)WINDOW_HIGHT / 2.0F;
+	data->px = 14 * 40;
+	data->py = 3 * 40;
     data->walk_direction = 0;
     data->move_speed = 10;
     data->turn_direction = 0;
-    data->turn_speed = 0.09F;
+    data->turn_speed = 0.09f;
     data->rotation = PI / 2;
-    data->rotation_speed = 0.1;
+    data->rotation_speed = 0.1f;
     data->ray_angle = 0;
     data->wall_hit_X = 0;
     data->wall_hit_Y = 0;

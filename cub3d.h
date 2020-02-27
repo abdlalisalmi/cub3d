@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/02/24 00:26:02 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/02/26 21:17:51 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct	s_struct
 	void *window_id;
 	void *connection_id;
 
-	int			px;
-	int			py;
+	float		px;
+	float		py;
 	float		walk_direction;
 	float		move_speed;
 	float		turn_direction;
@@ -47,12 +47,12 @@ typedef struct	s_struct
 }				t_struct;
 
 # define SQUARE 40
-# define WINDOW_WIDTH SQUARE * 29
-# define WINDOW_HIGHT SQUARE * 14
+# define WINDOW_WIDTH SQUARE * 25
+# define WINDOW_HIGHT SQUARE * 25
 
 # define PI 3.14159265358979323846
 # define FOV_ANGLE 60 * (PI / 180)
-# define WALL_COLUME_WIDTH 20
+# define WALL_COLUME_WIDTH 15
 # define NUM_RAYS (WINDOW_WIDTH / WALL_COLUME_WIDTH)
 
 # define INT_MAX 2147483647
@@ -74,6 +74,7 @@ int		update(t_struct *data);
 int		keypress(int keycode, t_struct *data);
 int		keyrelease(int keycode, t_struct *data);
 int		wall_check(float x, float y);
-int   distance_between_points(int x1, int y1, int x2, int y2);
+float   distance_between_points(float x1, float y1, float x2, float y2);
+float   normalize_angle(float angle);
 
 #endif

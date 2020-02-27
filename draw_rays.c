@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 20:12:25 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/02/24 00:29:42 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/02/26 20:55:58 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void    cast_rays(t_struct *data, int colume_id)
 
     float wall_hit_x;
     float wall_hit_y;
-    int distance;
+    float distance;
     int was_hit_vertical;
 
-    int Xinter_cept;
-    int Yinter_cept;
-    int Xstep;
-    int Ystep;
+    float Xinter_cept;
+    float Yinter_cept;
+    float Xstep;
+    float Ystep;
 
     colume_id = 1;
     wall_hit_x = 0;
@@ -45,6 +45,7 @@ void    cast_rays(t_struct *data, int colume_id)
     int found_horz_wall;
     float wall_horz_hit_X;
     float wall_horz_hit_Y;
+    float horz_hit_distance;
 
     found_horz_wall = 0;
     wall_horz_hit_X = 0;
@@ -79,10 +80,14 @@ void    cast_rays(t_struct *data, int colume_id)
         }
         else
         {
-            next_horz_x += Xinter_cept;
-            next_horz_y += Yinter_cept;
+            next_horz_x += Xstep;
+            next_horz_y += Ystep;
         }
     }
+    ////////////////////////// find distance horizontal //////////////
+    horz_hit_distance = (found_horz_wall)
+    ? distance_between_points(data->px, data->py, wall_horz_hit_X, wall_horz_hit_Y) 
+    : INT_MAX;
 /////////////////////////////////////////////////////////
 //// vertical wall hint find
 ////////////////////////////////////////////////////////
@@ -91,6 +96,7 @@ void    cast_rays(t_struct *data, int colume_id)
     int found_vert_wall;
     float wall_vert_hit_X;
     float wall_vert_hit_Y;
+    float vert_hit_distance;
 
     found_vert_wall = 0;
     wall_vert_hit_X = 0;
@@ -129,29 +135,18 @@ void    cast_rays(t_struct *data, int colume_id)
             next_vert_y += Ystep;
         }
     }
-    ////////////////////////// find distance between two point //////////////
-    float horz_hit_distance;
-    float vert_hit_distance;
+    ////////////////////////// find distance vertical //////////////
 
-    horz_hit_distance = (found_horz_wall)
-    ? distance_between_points(data->px, data->py, wall_horz_hit_X, wall_horz_hit_Y) 
-    : INT_MAX;
     vert_hit_distance = (found_vert_wall)
     ? distance_between_points(data->px, data->py, wall_vert_hit_X, wall_vert_hit_Y) 
     : INT_MAX;
+    
+    ///////////////////////////////////////////////////////////////////////////
     wall_hit_x = (horz_hit_distance < vert_hit_distance) ? wall_horz_hit_X : wall_vert_hit_X;
     wall_hit_y = (horz_hit_distance < vert_hit_distance) ? wall_horz_hit_Y : wall_vert_hit_Y;
     distance = (horz_hit_distance < vert_hit_distance) ? horz_hit_distance : vert_hit_distance;
     was_hit_vertical = (vert_hit_distance < horz_hit_distance);
     ray_draw(data, distance);
-}
-
-float   normalize_angle(float angle)
-{
-    angle = remainderf(angle, (int)(2 * PI));
-    if (angle < 0)
-        angle = (2 * PI) + angle;
-    return (angle);
 }
 
 void ray_draw(t_struct *data, int distance)
@@ -162,7 +157,6 @@ void ray_draw(t_struct *data, int distance)
 
     x = data->px;
     y = data->py;
-    //data->ray_angle = normalize_angle(data->ray_angle);
     while (i < distance)
     {
         mlx_pixel_put(data->connection_id, data->window_id, x, y, 0xE84118);
@@ -180,12 +174,12 @@ void draw_rays(t_struct *data)
     colume_id = 0;
     data->ray_angle = data->rotation - (float)(FOV_ANGLE / 2);
     i = 0;
-    while (i < NUM_RAYS && (data->ray_angle < data->rotation + (float)(FOV_ANGLE / 2)))
+    while (i < NUM_RAYS)
     {
         cast_rays(data, colume_id);
         data->ray_angle += FOV_ANGLE / NUM_RAYS;
+        data->ray_angle = normalize_angle(data->ray_angle);
         i++;
         colume_id++;
     }
-    
 }
