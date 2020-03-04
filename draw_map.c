@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 15:33:21 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/02/26 21:18:15 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/03/04 23:09:29 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ int wall_check(float x, float y)
 
     if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HIGHT)
         return (1);
-    map_index_X = floor(x / SQUARE);
-    map_index_Y = floor(y / SQUARE);
-    return (MAP[map_index_Y][map_index_X] != 0);
+    map_index_X = floorf(x / SQUARE);
+    map_index_Y = floorf(y / SQUARE);
+    return (MAP[map_index_Y][map_index_X]);
 }
 
-void    draw_squar(t_struct *data, int x, int y)
+void    draw_squar(t_struct *data, int x, int y, int color)
 {
     int tmp = y;
     int i = 0;
     int j = 0;
     while (i <= SQUARE)
     {
-        while (j <= SQUARE)
+        while (j <= SQUARE && x < WINDOW_WIDTH && y < WINDOW_HIGHT)
         {
-            mlx_pixel_put(data->connection_id, data->window_id, x, y, 0xFFFF00);
+			data->img_matrix[((int)y * WINDOW_WIDTH) + (int)x] = color;
             j++;
             y++;
         }
@@ -74,10 +74,10 @@ void    draw_squar(t_struct *data, int x, int y)
 
 void draw_map(t_struct *data)
 {
-	int i;
-	int j;
-	int x;
-	int y;
+	int	i;
+	int	j;
+	int	x;
+	int	y;
 
 	i = 0;
 	j = 0;
@@ -88,7 +88,9 @@ void draw_map(t_struct *data)
 		while (x <= WINDOW_WIDTH)
 		{
 			if (MAP[i][j] == 1)
-				draw_squar(data, x, y);
+				draw_squar(data, x, y, 0xFFFFFF);
+			else
+				draw_squar(data, x, y, 0x000000);
 			x+=SQUARE;
 			j++;
 		}

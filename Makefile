@@ -6,7 +6,7 @@
 #    By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 22:27:33 by aes-salm          #+#    #+#              #
-#    Updated: 2020/02/26 21:01:55 by aes-salm         ###   ########.fr        #
+#    Updated: 2020/03/01 13:59:47 by aes-salm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,5 +30,5 @@ fclean: clean
 re: fclean all
 
 run:
-	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit *.c -Ofast
+	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit *.c
 	./a.out
