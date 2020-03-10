@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/04 20:43:36 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/03/10 20:11:28 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@
 # include <string.h>
 
 # define SQUARE 40
-# define WINDOW_WIDTH SQUARE * 25
-# define WINDOW_HIGHT SQUARE * 25
+# define NUM_ROWS 15
+# define NUM_COLS 25
+# define WINDOW_WIDTH SQUARE * NUM_COLS
+# define WINDOW_HIGHT SQUARE * NUM_ROWS
 
 # define PI 3.14159265358979323846
 # define FOV_ANGLE 60 * (PI / 180)
@@ -45,8 +47,13 @@ typedef struct	s_struct
 {
 	void	*window_id;
 	void	*connection_id;
+
 	void	*image;
 	int		*img_matrix;
+
+	void	*image_td;
+	int		*img_matrix_td;
+
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
@@ -67,15 +74,26 @@ typedef struct	s_rays
 	float		ray_angle;
 	float		wall_hit_X;
 	float		wall_hit_Y;
-	int			wall_distance;
+	float		wall_distance;
 	int			was_hit_vertical;
 	int			ray_facing_up;
 	int			ray_facing_down;
 	int			ray_facing_R;
 	int			ray_facing_L;
 }				t_rays;
-
 t_rays rays[NUM_RAYS];
+
+typedef struct	s_tr_project
+{
+	float	real_distance;
+	float	distance_project_plane;
+	float	project_wall_height;
+	int		wall_top_pixel;
+	int		wall_bottom_pixel;
+}				t_tr_project;
+t_tr_project	tr_project;
+
+int *wallTexture;
 
 void	draw_map(t_struct *data);
 void	draw_player(t_struct *data);
@@ -86,5 +104,6 @@ int		keyrelease(int keycode, t_struct *data);
 int		wall_check(float x, float y);
 float   distance_between_points(float x1, float y1, float x2, float y2);
 float   normalize_angle(float angle);
-
+void	draw_td_project(t_struct *data);
+void alloc_texture();
 #endif

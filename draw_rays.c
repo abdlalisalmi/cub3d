@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 20:12:25 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/04 23:09:38 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/03/09 12:22:31 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void    cast_rays(t_struct *data, int colume_id)
     }
     ////////////////////////// find distance horizontal //////////////
     horz_hit_distance = (found_horz_wall)
-    ? (int)distance_between_points(data->px, data->py, wall_horz_hit_X, wall_horz_hit_Y) 
+    ? distance_between_points(data->px, data->py, wall_horz_hit_X, wall_horz_hit_Y) 
     : INT_MAX;
 /////////////////////////////////////////////////////////
 //// vertical wall hint find
@@ -128,7 +128,7 @@ void    cast_rays(t_struct *data, int colume_id)
     ////////////////////////// find distance vertical //////////////
 
     vert_hit_distance = (found_vert_wall)
-    ? (int)distance_between_points(data->px, data->py, wall_vert_hit_X, wall_vert_hit_Y) 
+    ? distance_between_points(data->px, data->py, wall_vert_hit_X, wall_vert_hit_Y) 
     : INT_MAX;
     
     ///////////////////////////////////////////////////////////////////////////
