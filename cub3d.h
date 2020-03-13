@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/10 20:11:28 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/03/12 21:57:15 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,22 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define SQUARE 40
-# define NUM_ROWS 15
+# define SQUARE 400
+# define NUM_ROWS 25
 # define NUM_COLS 25
 # define WINDOW_WIDTH SQUARE * NUM_COLS
 # define WINDOW_HIGHT SQUARE * NUM_ROWS
 
+# define WINDOW_W_TD 1900
+# define WINDOW_H_TD 1200
+
+
 # define PI 3.14159265358979323846
 # define FOV_ANGLE 60 * (PI / 180)
-# define WALL_COLUME_WIDTH 1
-# define NUM_RAYS (WINDOW_WIDTH / WALL_COLUME_WIDTH)
+# define NUM_RAYS WINDOW_W_TD
 
 # define INT_MAX 2147483647
+
 
 # define W 13
 # define S 1
@@ -93,7 +97,22 @@ typedef struct	s_tr_project
 }				t_tr_project;
 t_tr_project	tr_project;
 
-int *wallTexture;
+typedef struct s_texture
+{
+	void *img;
+	char *path;
+	int *colors;
+	int width;
+    int height;
+	int a;
+	int b;
+	int c;
+
+	int color;
+	int *wall;
+}				t_texture;
+t_texture		texture[4];
+
 
 void	draw_map(t_struct *data);
 void	draw_player(t_struct *data);
@@ -105,5 +124,4 @@ int		wall_check(float x, float y);
 float   distance_between_points(float x1, float y1, float x2, float y2);
 float   normalize_angle(float angle);
 void	draw_td_project(t_struct *data);
-void alloc_texture();
 #endif

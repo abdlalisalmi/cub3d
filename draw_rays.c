@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 20:12:25 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/09 12:22:31 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/03/12 18:28:14 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,10 @@ void    cast_rays(t_struct *data, int colume_id)
     next_horz_x = Xinter_cept;
     next_horz_y = Yinter_cept;
 
-    if (rays[colume_id].ray_facing_up)
-        next_horz_y--;
     while (next_horz_x >= 0 && next_horz_x <= WINDOW_WIDTH && 
             next_horz_y >= 0 && next_horz_y <= WINDOW_HIGHT)
     {
-        if (wall_check(next_horz_x, next_horz_y))
+        if (wall_check(next_horz_x, rays[colume_id].ray_facing_up ? next_horz_y - 1 : next_horz_y))
         {
             found_horz_wall = 1;
             wall_horz_hit_X = next_horz_x;
@@ -107,12 +105,10 @@ void    cast_rays(t_struct *data, int colume_id)
     next_vert_x = Xinter_cept;
     next_vert_y = Yinter_cept;
 
-    if (rays[colume_id].ray_facing_L)
-        next_vert_x--;
     while (next_vert_x >= 0 && next_vert_x <= WINDOW_WIDTH && 
             next_vert_y >= 0 && next_vert_y <= WINDOW_HIGHT)
     {
-        if (wall_check(next_vert_x, next_vert_y))
+        if (wall_check(rays[colume_id].ray_facing_L ? next_vert_x - 1: next_vert_x, next_vert_y))
         {
             found_vert_wall = 1;
             wall_vert_hit_X = next_vert_x;
@@ -169,7 +165,7 @@ void draw_rays(t_struct *data)
 	{
 		rays[colume_id].ray_angle = normalize_angle(ray_angle);
 		cast_rays(data, colume_id);
-		ray_draw(data, colume_id);
+		//ray_draw(data, colume_id);
 		colume_id++;
 		ray_angle += FOV_ANGLE / NUM_RAYS;
 		i++;
