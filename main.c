@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/13 11:41:53 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/03/13 22:06:53 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int    start_program(t_struct *data)
 {
     if (!(data->connection_id = mlx_init()))
         return (0);
-    if (!(data->window_id = mlx_new_window(data->connection_id, WINDOW_W_TD, WINDOW_H_TD, "Cub3d")))
+    if (!(data->window_id = mlx_new_window(data->connection_id, file.window_w_td, file.window_h_td, "Cub3d")))
         return (0);
 
 	if (!(data->image = mlx_new_image(data->connection_id, WINDOW_WIDTH, WINDOW_HIGHT)))
@@ -58,17 +58,19 @@ int    start_program(t_struct *data)
 	if (!(data->img_matrix = (int*)mlx_get_data_addr(data->image, &data->bits_per_pixel, &data->size_line, &data->endian)))
 	 	return (0);
 
-	if (!(data->image_td = mlx_new_image(data->connection_id, WINDOW_W_TD, WINDOW_H_TD)))
+	if (!(data->image_td = mlx_new_image(data->connection_id, file.window_w_td, file.window_h_td)))
 	 	return (0);
 	if (!(data->img_matrix_td = (int*)mlx_get_data_addr(data->image_td, &data->bits_per_pixel, &data->size_line, &data->endian)))
 	 	return (0);
-////////////
+
+
+//////////// Texture ////////
     if (texture_handle(data))
     {
         write(1, "Error\nTexture Error !!", 22);
         return (1);
     }
-////////////
+//////////// Texture //////
 	mlx_hook(data->window_id, 2, 0, keypress, data);
     mlx_hook(data->window_id, 3, 0, keyrelease, data);
     mlx_loop_hook(data->connection_id, update, data);
@@ -82,6 +84,9 @@ int     main()
 
     if (!(data = (t_struct*)malloc(sizeof(t_struct))))
         return (0);
+//////////// Reading From File ////////
+    file_handle();
+//////////// Reading From File ////////
     init_struct(data);
     start_program(data);
     return (EXIT_SUCCESS);

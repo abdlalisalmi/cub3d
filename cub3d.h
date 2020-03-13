@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/12 21:57:15 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/03/13 22:01:04 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <fcntl.h>
 
 # define SQUARE 400
 # define NUM_ROWS 25
@@ -26,8 +27,8 @@
 # define WINDOW_WIDTH SQUARE * NUM_COLS
 # define WINDOW_HIGHT SQUARE * NUM_ROWS
 
-# define WINDOW_W_TD 1900
-# define WINDOW_H_TD 1200
+# define WINDOW_W_TD 1920
+# define WINDOW_H_TD 1080
 
 
 # define PI 3.14159265358979323846
@@ -113,6 +114,19 @@ typedef struct s_texture
 }				t_texture;
 t_texture		texture[4];
 
+typedef struct s_file
+{
+	int i;
+	int num_rows;
+	int num_cols;
+	int window_heigth;
+	int window_width;
+	
+	int window_w_td;
+	int window_h_td;
+}				t_file;
+t_file			file;
+
 
 void	draw_map(t_struct *data);
 void	draw_player(t_struct *data);
@@ -124,4 +138,7 @@ int		wall_check(float x, float y);
 float   distance_between_points(float x1, float y1, float x2, float y2);
 float   normalize_angle(float angle);
 void	draw_td_project(t_struct *data);
+
+void	file_handle();
+void	handle_resolution(char *data);
 #endif
