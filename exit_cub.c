@@ -1,36 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_resolution.c                                :+:      :+:    :+:   */
+/*   exit_cub.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/13 21:42:49 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/17 16:01:58 by aes-salm         ###   ########.fr       */
+/*   Created: 2020/03/18 22:50:02 by aes-salm          #+#    #+#             */
+/*   Updated: 2020/03/18 22:54:00 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	my_atoi(const char *str)
+void    exit_cub(int status)
 {
-	int	result;
-
-	result = 0;
-	while (str[file.i] != '\n' && !((str[file.i] >= '0') && (str[file.i] <= '9')))
-		file.i++;
-	while ((str[file.i] >= '0') && (str[file.i] <= '9'))
-	{
-		result = result * 10;
-		result += (int)str[file.i] - '0';
-		file.i++;
-	}
-	return (result);
-}
-
-void	handle_resolution(char *data)
-{
-	file.map_tour++;
-	file.window_w_td = my_atoi(data);
-	file.window_h_td = my_atoi(data);
+    exit(status);
 }

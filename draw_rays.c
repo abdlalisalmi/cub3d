@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 20:12:25 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/13 22:06:00 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/03/16 18:09:18 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void draw_rays(t_struct *data)
 	{
 		rays[colume_id].ray_angle = normalize_angle(ray_angle);
 		cast_rays(data, colume_id);
-		//ray_draw(data, colume_id);
+		ray_draw(data, colume_id);
 		colume_id++;
 		ray_angle += FOV_ANGLE / NUM_RAYS;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 22:57:35 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/03 15:08:05 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/03/16 18:09:15 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	move_player(t_struct *data)
 void	draw_player(t_struct *data)
 {
 	move_player(data);
+	//mlx_pixel_put(data->connection_id, data->window_id, data->px, data->py, 0xf1c40f);
 }

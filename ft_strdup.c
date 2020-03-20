@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_resolution.c                                :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/13 21:42:49 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/17 16:01:58 by aes-salm         ###   ########.fr       */
+/*   Created: 2019/10/16 19:49:48 by aes-salm          #+#    #+#             */
+/*   Updated: 2019/12/10 14:22:10 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	my_atoi(const char *str)
+char	*ft_strdup(const char *str)
 {
-	int	result;
+	char			*ptr;
+	unsigned int	i;
 
-	result = 0;
-	while (str[file.i] != '\n' && !((str[file.i] >= '0') && (str[file.i] <= '9')))
-		file.i++;
-	while ((str[file.i] >= '0') && (str[file.i] <= '9'))
+	i = 0;
+	while (str[i])
+		i++;
+	if (!(ptr = malloc(i + 1)))
+		return (NULL);
+	i = 0;
+	while (str[i])
 	{
-		result = result * 10;
-		result += (int)str[file.i] - '0';
-		file.i++;
+		ptr[i] = str[i];
+		i++;
 	}
-	return (result);
-}
-
-void	handle_resolution(char *data)
-{
-	file.map_tour++;
-	file.window_w_td = my_atoi(data);
-	file.window_h_td = my_atoi(data);
+	ptr[i] = '\0';
+	return (ptr);
 }

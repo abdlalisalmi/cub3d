@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 10:59:50 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/13 22:02:19 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/03/18 23:02:26 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	fill_matrix_td(t_struct *data, int i)
 
 	y = 0;
 	while (y < tr_project.wall_top_pixel)
-		data->img_matrix_td[(file.window_w_td * y++) + i] = 0x45aaf2;
+		data->img_matrix_td[(file.window_w_td * y++) + i] = file.sky_color;
 
 	y = wall_texture(data, i, y);
 
 	while (y < file.window_h_td)
-		data->img_matrix_td[(file.window_w_td * y++) + i] = 0x218c74;
+		data->img_matrix_td[(file.window_w_td * y++) + i] = file.floor_color;
 }
 
 void	draw_td_project(t_struct *data)

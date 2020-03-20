@@ -1,9 +1,9 @@
-R 1920 1080
+R 900 600
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./src/texture/tx0.xpm
+SO ./src/texture/tx3.xpm
+WE ./src/texture/tx2.xpm
+EA ./src/texture/tx3.xpm
 
 S ./path_to_the_sprite_texture
 F 220,100,0

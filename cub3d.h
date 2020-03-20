@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/13 22:01:04 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/03/19 13:12:08 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 
 # include <mlx.h>
 # include <math.h>
+# include <errno.h>
+# include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include <fcntl.h>
 
-# define SQUARE 400
-# define NUM_ROWS 25
+# define SQUARE 40
+# define NUM_ROWS 15
 # define NUM_COLS 25
 # define WINDOW_WIDTH SQUARE * NUM_COLS
 # define WINDOW_HIGHT SQUARE * NUM_ROWS
@@ -119,11 +120,25 @@ typedef struct s_file
 	int i;
 	int num_rows;
 	int num_cols;
+
 	int window_heigth;
 	int window_width;
 	
 	int window_w_td;
 	int window_h_td;
+
+	char no_texture[50];
+	char so_texture[50];
+	char we_texture[50];
+	char ea_texture[50];
+	char sprite_texture[50];
+
+	int floor_color;
+	int sky_color;
+
+	char **map;
+	int map_tour;
+	
 }				t_file;
 t_file			file;
 
@@ -141,4 +156,15 @@ void	draw_td_project(t_struct *data);
 
 void	file_handle();
 void	handle_resolution(char *data);
+void	handle_texture_path(char *data);
+void    handle_floor_sky_color(char *data);
+int		my_atoi(const char *str);
+char	*convert_to_hexa(unsigned long decimal, char c);
+char	*ft_strdup(const char *str);
+char	*ft_strrev(char *str);
+char	*ft_strjoin(const char *s1, const char *s2);
+size_t	ft_strlen(const char *str);
+void    handle_map(char *data);
+
+void	exit_cub(int status);
 #endif
