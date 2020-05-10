@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 15:04:58 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/19 14:11:59 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/05/07 12:34:10 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int     line_len(char *data)
     int len;
 
     len = 0;
-    while (data[file.i] != '\n' && data[file.i] != EOF)
+    while (data[file.i] != '\n' && data[file.i])
     {
         len++;
         file.i++;
@@ -53,7 +53,7 @@ void    fill_map(char *data, int origin_i)
         j = 0;
         while (j < file.num_cols && data[file.i] != '\n')
         {
-            file.map[i][j] = data[file.i];
+            file.map[i][j] = (!data[file.i] ||data[file.i]==' ')?'#':data[file.i];
             j++;
             file.i++;
         }
@@ -63,14 +63,20 @@ void    fill_map(char *data, int origin_i)
     }
 }
 
-void    my_bzero(char *ptr)
+void    my_bzero()
 {
     int i;
+    int j;
 
     i = 0;
-    while (ptr[i])
+    while (i < file.num_rows)
     {
-        ptr[i] = 's';
+        j = 0;
+        while (j < file.num_cols)
+        {
+            file.map[i][j] = '#';
+            j++;
+        }
         i++;
     }
 }
@@ -91,10 +97,13 @@ void    handle_map(char *data)
     {
         row_len = line_len(data);
         file.num_cols = (file.num_cols < row_len) ? row_len : file.num_cols;
+        file.i++;
         i++;
     }
     i = 0;
     while (i < file.num_rows)
         file.map[i++] = (char *)malloc(file.num_cols * sizeof(char));
+    my_bzero();
     fill_map(data, origin_i);
+	handle_map_error();
 }

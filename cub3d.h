@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/19 13:12:08 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/05/06 17:10:14 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct s_file
 	int sky_color;
 
 	char **map;
+	char new_map[16][35];
 	int map_tour;
 	
 }				t_file;
@@ -165,6 +166,7 @@ char	*ft_strrev(char *str);
 char	*ft_strjoin(const char *s1, const char *s2);
 size_t	ft_strlen(const char *str);
 void    handle_map(char *data);
+void	handle_map_error();
 
 void	exit_cub(int status);
 #endif
