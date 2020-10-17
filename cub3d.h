@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/05/06 17:10:14 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/17 14:27:28 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,18 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define SQUARE 40
-# define NUM_ROWS 15
-# define NUM_COLS 25
-# define WINDOW_WIDTH SQUARE * NUM_COLS
-# define WINDOW_HIGHT SQUARE * NUM_ROWS
+# define SQUARE 200
+// # define NUM_ROWS 15
+// # define NUM_COLS 25
+// # define WINDOW_WIDTH SQUARE * NUM_COLS
+// # define WINDOW_HIGHT SQUARE * NUM_ROWS
 
-# define WINDOW_W_TD 1920
-# define WINDOW_H_TD 1080
+// # define WINDOW_W_TD 1920
+// # define WINDOW_H_TD 1080
 
 
 # define PI 3.14159265358979323846
 # define FOV_ANGLE 60 * (PI / 180)
-# define NUM_RAYS WINDOW_W_TD
 
 # define INT_MAX 2147483647
 
@@ -87,7 +86,7 @@ typedef struct	s_rays
 	int			ray_facing_R;
 	int			ray_facing_L;
 }				t_rays;
-t_rays rays[NUM_RAYS];
+t_rays *rays;
 
 typedef struct	s_tr_project
 {
@@ -137,7 +136,7 @@ typedef struct s_file
 	int sky_color;
 
 	char **map;
-	char new_map[16][35];
+	// char new_map[16][35];
 	int map_tour;
 	
 }				t_file;

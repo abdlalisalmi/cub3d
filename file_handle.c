@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 11:54:56 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/05/07 12:27:28 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/16 19:00:53 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,10 @@ void	text_handle(char *data)
 
 void	file_handle(char *cub_file)
 {
-	int i;
 	int fd;
 	char data[1024];
 
 	file.i = 0;
-	i = 0;
-	while (i++ <= 1024)
-		data[i] = 0;
-
 	fd = open(cub_file, O_RDONLY);
 	read(fd , data, 1024);
 	text_handle(data);

@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/05/07 12:34:26 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/17 14:20:26 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void init_struct(t_struct *data)
 {
-	data->px = 14 * SQUARE;
-	data->py = 3 * SQUARE;
+	data->px = 10 * SQUARE;
+	data->py = 2 * SQUARE;
     data->walk_direction = 0;
-    data->move_speed = SQUARE / 12;
+    data->move_speed = SQUARE / 25;
     data->turn_direction = 0;
     data->turn_speed = 0.0000000005F;
     data->rotation = PI / 2;
-    data->rotation_speed = 0.1f;
+    data->rotation_speed = 0.04f;
 }
 
 int    texture_handle(t_struct *data)
@@ -50,16 +50,15 @@ int    start_program(t_struct *data)
 {
     if (!(data->connection_id = mlx_init()))
         return (0);
-    if (!(data->window_id = mlx_new_window(data->connection_id, file.window_w_td, file.window_h_td, "Cub3d")))
-       return (0);
     // if (!(data->window_id = mlx_new_window(data->connection_id, WINDOW_WIDTH, WINDOW_HIGHT, "Cub3d")))
     //     return (0);
+	// if (!(data->image = mlx_new_image(data->connection_id, file.window_w_td, file.window_h_td)))
+	//  	return (0);
+	// if (!(data->img_matrix = (int*)mlx_get_data_addr(data->image, &data->bits_per_pixel, &data->size_line, &data->endian)))
+	//  	return (0);
 
-	if (!(data->image = mlx_new_image(data->connection_id, WINDOW_WIDTH, WINDOW_HIGHT)))
-	 	return (0);
-	if (!(data->img_matrix = (int*)mlx_get_data_addr(data->image, &data->bits_per_pixel, &data->size_line, &data->endian)))
-	 	return (0);
-
+    if (!(data->window_id = mlx_new_window(data->connection_id, file.window_w_td, file.window_h_td, "Cub3d")))
+       return (0);
 	if (!(data->image_td = mlx_new_image(data->connection_id, file.window_w_td, file.window_h_td)))
 	 	return (0);
 	if (!(data->img_matrix_td = (int*)mlx_get_data_addr(data->image_td, &data->bits_per_pixel, &data->size_line, &data->endian)))
@@ -93,20 +92,23 @@ int     main(int argc, char **argv)
         return (0);
 //////////// Reading From File ////////
     file_handle(argv[1]);
-    printf("------- R -------\n");
-	printf("%d\n", file.window_w_td);
-	printf("%d\n", file.window_h_td);
-	printf("------- T -------\n");
-	printf("%s\n", file.no_texture);
-	printf("%s\n", file.so_texture);
-	printf("%s\n", file.we_texture);
-	printf("%s\n", file.ea_texture);
-	printf("%s\n", file.sprite_texture);
-	printf("------- F -------\n");
-	printf("%d\n", file.floor_color);
-	printf("------- C -------\n");
-	printf("%d\n", file.sky_color);
-	printf("------- M -------\n");
+    rays = (t_rays *)malloc(sizeof(t_rays) * file.window_w_td);
+
+    // printf("------- R -------\n");
+	// printf("%d\n", file.window_w_td);
+	// printf("%d\n", file.window_h_td);
+	// printf("------- T -------\n");
+	// printf("%s\n", file.no_texture);
+	// printf("%s\n", file.so_texture);
+	// printf("%s\n", file.we_texture);
+	// printf("%s\n", file.ea_texture);
+	// printf("%s\n", file.sprite_texture);
+	// printf("------- F -------\n");
+	// printf("%d\n", file.floor_color);
+	// printf("------- C -------\n");
+	// printf("%d\n", file.sky_color);
+	// printf("------- M -------\n");
+    
 	printf("%d\n", file.num_rows);
 	printf("%d\n", file.num_cols);
 
@@ -117,8 +119,9 @@ int     main(int argc, char **argv)
 		printf("\n");
 		i++;
 	}
+    
 //////////// Reading From File ////////
-    // init_struct(data);
-    // start_program(data);
+    init_struct(data);
+    start_program(data);
     return (EXIT_SUCCESS);
 }

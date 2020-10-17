@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 10:59:50 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/18 23:02:26 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/16 17:52:14 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ int		wall_texture(t_struct *data, int i, int y)
 			tx = 2;
 		else if (rays[i].was_hit_vertical && rays[i].ray_facing_L)
 			tx = 3;
-		//tx = (rays[i].was_hit_vertical && rays[i].ray_facing_down) ? 1 : tx;
-		//tx = (rays[i].was_hit_vertical && rays[i].ray_facing_R) ? 2 : tx;
-		//tx = (rays[i].was_hit_vertical && rays[i].ray_facing_R) ? 3 : tx;
 
 		distanceFT = y + (float)(tr_project.project_wall_height / 2) - (float)(file.window_h_td / 2);
 		offsetY = distanceFT * ((float)SQUARE / (float)tr_project.project_wall_height);
@@ -66,7 +63,7 @@ void	draw_td_project(t_struct *data)
 	i = 0;
 	tr_project.distance_project_plane =
 	(file.window_w_td / 2) / tanf(FOV_ANGLE / 2);
-	while (i < NUM_RAYS)
+	while (i < file.window_w_td)
 	{
 		tr_project.real_distance = rays[i].wall_distance *
 		cosf(rays[i].ray_angle - data->rotation);

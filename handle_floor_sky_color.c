@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 19:37:36 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/20 16:03:49 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/16 14:01:07 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int hexa_to_decimal(char hexVal[])
     return dec_val; 
 } 
 
-const int    color_convert(int r, int g, int b)
+int    color_convert(int r, int g, int b)
 {
 	char *r_hexa;
 	char *g_hexa;

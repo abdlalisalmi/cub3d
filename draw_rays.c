@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 20:12:25 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/16 18:09:18 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/17 14:26:37 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void    cast_rays(t_struct *data, int colume_id)
     next_horz_x = Xinter_cept;
     next_horz_y = Yinter_cept;
 
-    while (next_horz_x >= 0 && next_horz_x <= WINDOW_WIDTH && 
-            next_horz_y >= 0 && next_horz_y <= WINDOW_HIGHT)
+    while (next_horz_x >= 0 && next_horz_x <= (SQUARE * file.num_cols) && 
+            next_horz_y >= 0 && next_horz_y <= (SQUARE * file.num_rows))
     {
         if (wall_check(next_horz_x, rays[colume_id].ray_facing_up ? next_horz_y - 1 : next_horz_y))
         {
@@ -105,8 +105,8 @@ void    cast_rays(t_struct *data, int colume_id)
     next_vert_x = Xinter_cept;
     next_vert_y = Yinter_cept;
 
-    while (next_vert_x >= 0 && next_vert_x <= WINDOW_WIDTH && 
-            next_vert_y >= 0 && next_vert_y <= WINDOW_HIGHT)
+    while (next_vert_x >= 0 && next_vert_x <= (SQUARE * file.num_cols) && 
+            next_vert_y >= 0 && next_vert_y <= (SQUARE * file.num_rows))
     {
         if (wall_check(rays[colume_id].ray_facing_L ? next_vert_x - 1: next_vert_x, next_vert_y))
         {
@@ -143,9 +143,9 @@ void ray_draw(t_struct *data, int colume_id)
 	i = 0;
 	x = data->px;
 	y = data->py;
-	while (i <= rays[colume_id].wall_distance && x < WINDOW_WIDTH && y < WINDOW_HIGHT)
+	while (i <= rays[colume_id].wall_distance && x < (SQUARE * file.num_cols) && y < (SQUARE * file.num_rows))
 	{
-		data->img_matrix[((int)y * WINDOW_WIDTH) + (int)x] = 0xf1c40f;
+		data->img_matrix[((int)y * (SQUARE * file.num_cols)) + (int)x] = 0xf1c40f;
 		x += cosf(rays[colume_id].ray_angle);
 		y += sinf(rays[colume_id].ray_angle);
 		i++;
@@ -165,9 +165,9 @@ void draw_rays(t_struct *data)
 	{
 		rays[colume_id].ray_angle = normalize_angle(ray_angle);
 		cast_rays(data, colume_id);
-		ray_draw(data, colume_id);
+		// ray_draw(data, colume_id);
 		colume_id++;
-		ray_angle += FOV_ANGLE / NUM_RAYS;
+		ray_angle += FOV_ANGLE / file.window_w_td;
 		i++;
 	}
 }

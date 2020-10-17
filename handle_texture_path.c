@@ -6,13 +6,13 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 18:37:57 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/17 16:02:12 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/16 14:01:20 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-const void	path_fill(char *data, char *tmp)
+void	path_fill(char *data, char *tmp)
 {
 	int i;
 

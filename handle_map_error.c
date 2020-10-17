@@ -19,13 +19,13 @@ static int is_map_opened(int x, int y, int rows, int cols, char new_map[rows][co
 	if (x < 0 || x == rows || y < 0 || y == cols)
 		return (0);
 	el = new_map[x][y];
-	if (el != '#' && el != '1')
+	if (el != '.' && el != '1')
 	{
 		write(1, "Error:\nThe map is opened\n",25);
 		exit_cub(0);
 	}
 	new_map[x][y] = '1';
-	if (el == '#')
+	if (el == '.')
 	{
 		is_map_opened(x, y + 1, rows, cols, new_map);
 		is_map_opened(x, y - 1, rows, cols, new_map);
@@ -52,9 +52,9 @@ static void	create_new_map()
 		while (y < cols)
 		{
 			if (x == 0 || x == rows - 1)
-				new_map[x][y] = '#';
+				new_map[x][y] = '.';
 			else if (y == 0 || y == cols - 1)
-				new_map[x][y] = '#';
+				new_map[x][y] = '.';
 			else
 				new_map[x][y] = file.map[x-1][y-1];
 			y++;
