@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 15:04:58 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/17 14:11:57 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/20 09:55:20 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 int     line_len(char *data)
 {
     int len;
-    int i;
 
     len = 0;
-    i = file.i;
-    while (data[i] != '\n' && data[i])
+    while (data[file.i] != '\n' && data[file.i])
     {
         len++;
-        i++;
+        file.i++;
     }
+    file.i++;
     return (len);
 }
 
@@ -34,7 +33,7 @@ int     num_of_rows(char *data)
 
     rows = 1;
     i = file.i;
-    while (data[i])
+    while (data[i] && data[i] != EOF)
     {
         if (data[i] == '\n')
             rows++;
@@ -54,6 +53,11 @@ void    fill_map(char *data)
         j = 0;
         while (j < file.num_cols && data[file.i] != '\n' && data[file.i] != EOF)
         {
+            if (data[file.i] == 'N')
+            {
+                file.px = i;
+                file.py = j;
+            }
             if (data[file.i] != ' ')
                 file.map[i][j] = data[file.i];
             j++;
@@ -69,19 +73,11 @@ void    fill_map(char *data)
 void    my_bzero()
 {
     int i;
-    int j;
 
     i = 0;
     while (i < file.num_rows)
     {
-        j = 0;
-        while (j < file.num_cols)
-        {
-            if (file.map[i][j] != '1' && file.map[i][j] != '0')
-                file.map[i][j] = '.';
-            j++;
-        }
-        file.map[i][j] = '\0';
+        file.map[i] = ft_memset(file.map[i], '.', file.num_cols);
         i++;
     }
 }
@@ -90,22 +86,25 @@ void    handle_map(char *data)
 {
     int row_len;
     int i;
+    int old_position;
 
     i = 0;
     while (data[file.i] == '\n')
         file.i++;
     file.num_rows = num_of_rows(data);
     file.map = (char **)malloc(file.num_rows * sizeof(char*));
+    old_position = file.i;
     while (i < file.num_rows)
     {
         row_len = line_len(data);
         file.num_cols = (file.num_cols < row_len) ? row_len : file.num_cols;
         i++;
     }
+    file.i = old_position;
     i = 0;
     while (i < file.num_rows)
         file.map[i++] = (char *)malloc(file.num_cols * sizeof(char));
-    fill_map(data);
     my_bzero();
-	handle_map_error();
+    fill_map(data);
+	// handle_map_error();
 }

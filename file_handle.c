@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 11:54:56 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/16 19:00:53 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:22:51 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ void	text_handle(char *data)
 void	file_handle(char *cub_file)
 {
 	int fd;
-	char data[1024];
+	int buffer;
+	char *data;
 
+	buffer = 4094;
+	data = malloc(sizeof(char) * buffer);
 	file.i = 0;
 	fd = open(cub_file, O_RDONLY);
-	read(fd , data, 1024);
+	read(fd , data, buffer);
 	text_handle(data);
 	close(fd);
 }

@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/20 16:32:14 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/20 10:01:48 by aes-salm         ###   ########.fr       */
+/*   Created: 2020/10/19 10:36:41 by aes-salm          #+#    #+#             */
+/*   Updated: 2020/10/19 10:37:31 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int update(t_struct *data)
+void	*ft_memset(void *str, int c, size_t n)
 {
-	// draw_map(data);
-	draw_td_project(data);
-	draw_player(data);
-	draw_rays(data);
-	mlx_put_image_to_window(data->connection_id, data->window_id, data->image_td, 0, 0);
-	// mlx_put_image_to_window(data->connection_id, data->window_id, data->image, 0, 0);
-    return (0);
+	char			*pstr;
+	unsigned int	i;
+
+	pstr = str;
+	i = 0;
+	while (i < n)
+	{
+		pstr[i] = c;
+		i++;
+	}
+	return (pstr);
 }

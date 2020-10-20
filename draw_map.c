@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 15:33:21 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/17 14:29:35 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/20 09:58:55 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,29 @@ int wall_check(float x, float y)
         return (1);
     map_index_X = floorf(x / SQUARE);
     map_index_Y = floorf(y / SQUARE);
-    return (file.map[map_index_Y][map_index_X]);
+
+	if (map_index_X > (SQUARE * file.num_cols) || map_index_Y > (SQUARE * file.num_rows))
+		return (1);
+
+	if (file.map[map_index_Y][map_index_X] == '1' || file.map[map_index_Y][map_index_X] == '2')
+		return (1);
+    return (0);
 }
 
 void    draw_squar(t_struct *data, int x, int y, int color)
 {
 	int i;
 	int j;
+	int index;
+
 	j = y;
 	while (j < y + SQUARE)
 	{
 		i = x;
 		while (i < x + SQUARE)
 		{
-			data->img_matrix[((int)j * (SQUARE * file.num_cols) + (int)i)] = color;
+			index = (int)(j * (SQUARE * file.num_cols) + i);
+			data->img_matrix[index] = color;
 			i++;
 		}
 		j++;
@@ -57,7 +66,7 @@ void draw_map(t_struct *data)
 		{
 			x = i * SQUARE;
 			y = j * SQUARE;
-			color = file.map[j][i] == 1 ? 0xFFFFFF : 0x000000;
+			color = file.map[j][i] == '1' ? 0xFFFFFF : 0x000000;
 			draw_squar(data, x, y,color);
 			i++;
 		}

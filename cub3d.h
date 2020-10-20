@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/17 14:27:28 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/20 10:38:31 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,10 @@ typedef struct s_file
 	int sky_color;
 
 	char **map;
-	// char new_map[16][35];
 	int map_tour;
+
+	int px;
+	int py;
 	
 }				t_file;
 t_file			file;
@@ -163,6 +165,7 @@ char	*convert_to_hexa(unsigned long decimal, char c);
 char	*ft_strdup(const char *str);
 char	*ft_strrev(char *str);
 char	*ft_strjoin(const char *s1, const char *s2);
+void	*ft_memset(void *str, int c, size_t n);
 size_t	ft_strlen(const char *str);
 void    handle_map(char *data);
 void	handle_map_error();

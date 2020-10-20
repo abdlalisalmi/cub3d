@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 20:12:25 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/17 14:26:37 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/20 10:27:56 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void    cast_rays(t_struct *data, int colume_id)
     next_horz_x = Xinter_cept;
     next_horz_y = Yinter_cept;
 
-    while (next_horz_x >= 0 && next_horz_x <= (SQUARE * file.num_cols) && 
-            next_horz_y >= 0 && next_horz_y <= (SQUARE * file.num_rows))
+    while (next_horz_x >= 0 && next_horz_x < (SQUARE * file.num_cols) && 
+            next_horz_y >= 0 && next_horz_y < (SQUARE * file.num_rows))
     {
         if (wall_check(next_horz_x, rays[colume_id].ray_facing_up ? next_horz_y - 1 : next_horz_y))
         {
@@ -105,8 +105,8 @@ void    cast_rays(t_struct *data, int colume_id)
     next_vert_x = Xinter_cept;
     next_vert_y = Yinter_cept;
 
-    while (next_vert_x >= 0 && next_vert_x <= (SQUARE * file.num_cols) && 
-            next_vert_y >= 0 && next_vert_y <= (SQUARE * file.num_rows))
+    while (next_vert_x >= 0 && next_vert_x < (SQUARE * file.num_cols) && 
+            next_vert_y >= 0 && next_vert_y < (SQUARE * file.num_rows))
     {
         if (wall_check(rays[colume_id].ray_facing_L ? next_vert_x - 1: next_vert_x, next_vert_y))
         {

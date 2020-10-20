@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/17 14:20:26 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/20 10:37:33 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void init_struct(t_struct *data)
 {
-	data->px = 10 * SQUARE;
-	data->py = 2 * SQUARE;
+	data->px = file.py * SQUARE;
+	data->py = file.px * SQUARE;
     data->walk_direction = 0;
-    data->move_speed = SQUARE / 25;
+    data->move_speed = SQUARE / (SQUARE/10);
     data->turn_direction = 0;
     data->turn_speed = 0.0000000005F;
     data->rotation = PI / 2;
@@ -50,9 +50,10 @@ int    start_program(t_struct *data)
 {
     if (!(data->connection_id = mlx_init()))
         return (0);
-    // if (!(data->window_id = mlx_new_window(data->connection_id, WINDOW_WIDTH, WINDOW_HIGHT, "Cub3d")))
+
+    // if (!(data->window_id = mlx_new_window(data->connection_id, file.window_w_td, file.window_h_td, "Cub3d")))
     //     return (0);
-	// if (!(data->image = mlx_new_image(data->connection_id, file.window_w_td, file.window_h_td)))
+	// if (!(data->image = mlx_new_image(data->connection_id, (SQUARE * file.num_cols), (SQUARE * file.num_rows))))
 	//  	return (0);
 	// if (!(data->img_matrix = (int*)mlx_get_data_addr(data->image, &data->bits_per_pixel, &data->size_line, &data->endian)))
 	//  	return (0);
@@ -109,8 +110,7 @@ int     main(int argc, char **argv)
 	// printf("%d\n", file.sky_color);
 	// printf("------- M -------\n");
     
-	printf("%d\n", file.num_rows);
-	printf("%d\n", file.num_cols);
+
 
 	int i = 0;
 	while (i < file.num_rows)
@@ -119,7 +119,11 @@ int     main(int argc, char **argv)
 		printf("\n");
 		i++;
 	}
+	printf("rows : %d\n", file.num_rows);
+	printf("coloms : %d\n", file.num_cols);
     
+    // printf("%d\n", file.px);
+    // printf("%d\n", file.py);
 //////////// Reading From File ////////
     init_struct(data);
     start_program(data);
