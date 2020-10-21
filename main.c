@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/21 14:08:57 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/21 14:25:58 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,37 +96,37 @@ int     main(int argc, char **argv)
     file_handle(argv[1]);
     rays = (t_rays *)malloc(sizeof(t_rays) * file.window_w_td);
 
-    // printf("------- R -------\n");
-	// printf("%d\n", file.window_w_td);
-	// printf("%d\n", file.window_h_td);
-	// printf("------- T -------\n");
-	// printf("%s\n", file.no_texture);
-	// printf("%s\n", file.so_texture);
-	// printf("%s\n", file.we_texture);
-	// printf("%s\n", file.ea_texture);
-	// printf("%s\n", file.sprite_texture);
-	// printf("------- F -------\n");
-	// printf("%d\n", file.floor_color);
-	// printf("------- C -------\n");
-	// printf("%d\n", file.sky_color);
-	// printf("------- M -------\n");
+    printf("------- R -------\n");
+	printf("%d\n", file.window_w_td);
+	printf("%d\n", file.window_h_td);
+	printf("------- T -------\n");
+	printf("%s\n", file.no_texture);
+	printf("%s\n", file.so_texture);
+	printf("%s\n", file.we_texture);
+	printf("%s\n", file.ea_texture);
+	printf("%s\n", file.sprite_texture);
+	printf("------- F -------\n");
+	printf("%d\n", file.floor_color);
+	printf("------- C -------\n");
+	printf("%d\n", file.sky_color);
+	printf("------- M -------\n");
     
 
 
-	// int i = 0;
-	// while (i < file.num_rows)
-	// {
-	// 	printf("%s", file.map[i]);
-	// 	printf("\n");
-	// 	i++;
-	// }
-	// printf("rows : %d\n", file.num_rows);
-	// printf("coloms : %d\n", file.num_cols);
+	int i = 0;
+	while (i < file.num_rows)
+	{
+		printf("%s", file.map[i]);
+		printf("\n");
+		i++;
+	}
+	printf("rows : %d\n", file.num_rows);
+	printf("coloms : %d\n", file.num_cols);
     
-    // printf("%d\n", file.px);
-    // printf("%d\n", file.py);
+    printf("%d\n", file.px);
+    printf("%d\n", file.py);
 //////////// Reading From File ////////
-    init_struct(data);
-    start_program(data);
+    // init_struct(data);
+    // start_program(data);
     return (EXIT_SUCCESS);
 }

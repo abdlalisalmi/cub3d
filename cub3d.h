@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/21 11:59:52 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/21 14:27:04 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef struct s_file
 
 	char **map;
 	int map_tour;
+	int row;
 
 	int px;
 	int py;
@@ -163,6 +164,7 @@ void	file_handle();
 void	handle_resolution(char *data);
 void	handle_texture_path(char *data);
 void    handle_floor_sky_color(char *data);
+void	handle_map(char *line, int row);
 int		my_atoi(const char *str);
 char	*convert_to_hexa(unsigned long decimal, char c);
 char	*ft_strdup(const char *str);

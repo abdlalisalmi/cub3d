@@ -6,43 +6,11 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 11:54:56 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/21 11:57:49 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/21 14:30:14 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void get_player_position(char c, int row, int col)
-{
-		file.px = row;
-        file.py = col;
-	    if (c == 'N')
-			file.player_view = 0.665;
-		if (c == 'W')
-			file.player_view = 1;
-		if (c == 'S')
-			file.player_view = 2;
-		if (c == 'E')
-			file.player_view = 60;
-
-}
-
-void    handle_map_line(char *line, int row)
-{
-    int i;
-
-    file.map[row] = ft_memset(file.map[row], '.', file.num_cols + 1);
-    i = 0;
-    while (i < file.num_cols && line[i])
-    {
-        if (line[i] == 'N' || line[i] == 'W' || line[i] == 'S' || line[i] == 'E')
-			get_player_position(line[i], row, i);
-        if (line[i] != ' ')
-            file.map[row][i] = line[i];
-        i++;
-    }
-    file.map[row][file.num_cols] = '\0';
-}
 
 void get_map_ready(char *cub_file)
 {
@@ -54,26 +22,11 @@ void get_map_ready(char *cub_file)
     file.map = (char **)malloc((file.num_rows) * sizeof(char*));
     while (i < file.num_rows)
         file.map[i++] = (char *)malloc((file.num_cols + 1) * sizeof(char));
-	i = 0;
+	file.row = 0;
 	fd = open(cub_file, O_RDONLY);
     while (get_next_line(fd, &line))
-    {
-		if (line[0] == ' ' || line[0] == '1')
-		{
-			handle_map_line(line, i);
-			i++;
-		}
-		if (line[0] == '\t')
-		{
-			write(1, "Error\nYou are not allowed to add tabs on the map file. !!\n", 58);
-			free_all(&line);
-        	exit(EXIT_FAILURE);
-		}
-        free_all(&line);
-    }
-	if (line[0] == ' ' || line[0] == '1')
-		handle_map_line(line, file.num_rows - 1);
-    free_all(&line);
+		handle_map(line, file.row);
+	handle_map(line, file.row - 1);
 	close(fd);
 	handle_map_error();
 }
