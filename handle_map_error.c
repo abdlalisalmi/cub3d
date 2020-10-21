@@ -21,8 +21,12 @@ static int is_map_opened(int x, int y, int rows, int cols, char new_map[rows][co
 	el = new_map[x][y];
 	if (el != '.' && el != '1')
 	{
-		write(1, "Error:\nThe map is opened\n",25);
-		exit_cub(0);
+		write(1, "Error:\nThe map is opened in X=",30);
+		ft_putnbr(x);
+		write(1, " Y=",3);
+		ft_putnbr(y);
+		write(1, "\n",1);
+		exit_cub(EXIT_FAILURE);
 	}
 	new_map[x][y] = '1';
 	if (el == '.')
@@ -31,6 +35,10 @@ static int is_map_opened(int x, int y, int rows, int cols, char new_map[rows][co
 		is_map_opened(x, y - 1, rows, cols, new_map);
 		is_map_opened(x + 1, y, rows, cols, new_map);
 		is_map_opened(x - 1, y, rows, cols, new_map);
+		is_map_opened(x + 1, y + 1, rows, cols, new_map);
+		is_map_opened(x + 1, y - 1, rows, cols, new_map);
+		is_map_opened(x - 1, y - 1, rows, cols, new_map);
+		is_map_opened(x - 1, y + 1, rows, cols, new_map);
 	}
 	return (1);
 }

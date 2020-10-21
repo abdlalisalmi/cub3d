@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 14:15:44 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/21 14:30:59 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/21 18:14:49 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@ void    handle_map_line(char *line, int row)
     i = 0;
     while (i < file.num_cols && line[i])
     {
+        if (line[i] != 'N' && line[i] != 'W' && line[i] != 'S' && 
+        line[i] != 'E' && line[i] != '1' && line[i] != '0' && 
+        line[i] != '2' && line[i] != ' ')
+        {
+            write(1, "Error:\nBad char in the map in position X=",42);
+            ft_putnbr(row + 1);
+            write(1, " Y=",3);
+            ft_putnbr(i + 2);
+            write(1, "\n",1);
+            exit_cub(EXIT_FAILURE);
+        }
         if (line[i] == 'N' || line[i] == 'W' || line[i] == 'S' || line[i] == 'E')
 			get_player_position(line[i], row, i);
         if (line[i] != ' ')

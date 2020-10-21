@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/21 14:25:58 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/21 18:15:45 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int     main(int argc, char **argv)
     printf("%d\n", file.px);
     printf("%d\n", file.py);
 //////////// Reading From File ////////
-    // init_struct(data);
-    // start_program(data);
+    init_struct(data);
+    start_program(data);
     return (EXIT_SUCCESS);
 }

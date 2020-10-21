@@ -1,2 +1,3 @@
-- map problem
-- get player possition
+- map problem √
+- get player possition √
+- map corner check √
