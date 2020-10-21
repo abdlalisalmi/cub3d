@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/21 11:59:38 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/21 14:08:57 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int    texture_handle(t_struct *data)
 
     texture[0].path = file.no_texture;
     texture[1].path = file.so_texture;
-    texture[2].path = file.we_texture;
-    texture[3].path = file.ea_texture;
+    texture[2].path = file.ea_texture;
+    texture[3].path = file.we_texture;
     tx = 0;
     while (tx < 4)
     {
