@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 10:36:41 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/19 10:37:31 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/21 10:05:27 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void	*ft_memset(void *str, int c, size_t n)
 
 	pstr = str;
 	i = 0;
-	while (i < n)
+	while (i < n - 1)
 	{
 		pstr[i] = c;
 		i++;
 	}
+	pstr[i] = '\0';
 	return (pstr);
 }

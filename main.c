@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/20 10:37:33 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/21 11:59:38 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void init_struct(t_struct *data)
 	data->px = file.py * SQUARE;
 	data->py = file.px * SQUARE;
     data->walk_direction = 0;
-    data->move_speed = SQUARE / (SQUARE/10);
+    data->move_speed = SQUARE / (SQUARE / 10);
     data->turn_direction = 0;
     data->turn_speed = 0.0000000005F;
-    data->rotation = PI / 2;
+    data->rotation = PI / file.player_view ;
     data->rotation_speed = 0.04f;
 }
 
@@ -73,6 +73,7 @@ int    start_program(t_struct *data)
         exit_cub(EXIT_FAILURE);
     }
 //////////// Texture //////
+    
 	mlx_hook(data->window_id, 2, 0, keypress, data);
     mlx_hook(data->window_id, 3, 0, keyrelease, data);
     mlx_loop_hook(data->connection_id, update, data);
@@ -112,15 +113,15 @@ int     main(int argc, char **argv)
     
 
 
-	int i = 0;
-	while (i < file.num_rows)
-	{
-		printf("%s", file.map[i]);
-		printf("\n");
-		i++;
-	}
-	printf("rows : %d\n", file.num_rows);
-	printf("coloms : %d\n", file.num_cols);
+	// int i = 0;
+	// while (i < file.num_rows)
+	// {
+	// 	printf("%s", file.map[i]);
+	// 	printf("\n");
+	// 	i++;
+	// }
+	// printf("rows : %d\n", file.num_rows);
+	// printf("coloms : %d\n", file.num_cols);
     
     // printf("%d\n", file.px);
     // printf("%d\n", file.py);

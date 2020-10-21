@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/20 10:38:31 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/21 11:59:52 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <string.h>
 
 # define SQUARE 200
+# define BUFFER_SIZE 2048
 // # define NUM_ROWS 15
 // # define NUM_COLS 25
 // # define WINDOW_WIDTH SQUARE * NUM_COLS
@@ -140,6 +141,8 @@ typedef struct s_file
 
 	int px;
 	int py;
+
+	float player_view;
 	
 }				t_file;
 t_file			file;
@@ -167,8 +170,14 @@ char	*ft_strrev(char *str);
 char	*ft_strjoin(const char *s1, const char *s2);
 void	*ft_memset(void *str, int c, size_t n);
 size_t	ft_strlen(const char *str);
-void    handle_map(char *data);
 void	handle_map_error();
+
+int		get_next_line(int fd, char **line);
+size_t	get_strlen(const char *str);
+char	*get_strdup(const char *str);
+char	*get_substr(char const *s, unsigned int start, size_t len);
+char	*get_strjoin(char **line, char *tmp);
+void	free_all(char **tmp);
 
 void	exit_cub(int status);
 #endif
