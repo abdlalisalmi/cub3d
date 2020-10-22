@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 14:15:44 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/21 18:14:49 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/22 10:14:58 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,22 @@
 
 void get_player_position(char c, int row, int col)
 {
-		file.px = row;
-        file.py = col;
-	    if (c == 'N')
-			file.player_view = 0.665;
-		if (c == 'W')
-			file.player_view = 1;
-		if (c == 'S')
-			file.player_view = 2;
-		if (c == 'E')
-			file.player_view = 60;
+    file.player_found++;
+    if (file.player_found > 1)
+    {
+        write(1, "Error:\nYou have more than one player in the MAP !!\n",53);
+        exit_cub(EXIT_FAILURE);
+    }
+    file.px = row;
+    file.py = col;
+    if (c == 'N')
+        file.player_view = 0.665;
+    if (c == 'W')
+        file.player_view = 1;
+    if (c == 'S')
+        file.player_view = 2;
+    if (c == 'E')
+        file.player_view = 60;
 
 }
 

@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/21 18:15:45 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/22 09:57:59 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void init_struct(t_struct *data)
 {
+    file.player_found = 0;
 	data->px = file.py * SQUARE;
 	data->py = file.px * SQUARE;
     data->walk_direction = 0;

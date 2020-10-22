@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/21 17:52:10 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/22 09:57:34 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,8 @@ typedef struct s_file
 
 	int px;
 	int py;
-
 	float player_view;
+	int player_found;
 	
 }				t_file;
 t_file			file;

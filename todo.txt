@@ -1,3 +1,4 @@
 - map problem √
 - get player possition √
 - map corner check √
+- more than one player or multi player √
