@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 22:57:35 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/19 20:13:55 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/22 10:42:54 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	move_player(t_struct *data)
 	data->rotation += data->turn_direction * data->rotation_speed;
 	data->rotation = normalize_angle(data->rotation);
 	MoveStep = data->walk_direction * data->move_speed;
-	nextPX = data->px + cosf(data->rotation) * MoveStep;
-	nextPY = data->py + sinf(data->rotation) * MoveStep;
+	nextPX = data->px + cosf(data->rotation + data->side) * MoveStep;
+	nextPY = data->py + sinf(data->rotation + data->side) * MoveStep;
 	if (!wall_check(nextPX, data->py))
 		data->px = nextPX;
 	if (!wall_check(data->px, nextPY))

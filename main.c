@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/22 09:57:59 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/22 12:25:58 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void init_struct(t_struct *data)
     data->turn_speed = 0.0000000005F;
     data->rotation = PI / file.player_view ;
     data->rotation_speed = 0.04f;
+    data->side = 0;
 }
 
 int    texture_handle(t_struct *data)
@@ -82,9 +83,21 @@ int    start_program(t_struct *data)
     return (0);
 }
 
+int     file_etantion_check(char *filename)
+{
+    char *point;
+
+    if((point = ft_strrchr(filename,'.')) != NULL ) {
+        if(ft_strncmp(point,".cub", ft_strlen(filename)) == 0)
+            return (1);
+    }
+    return (0);
+}
+
 int     main(int argc, char **argv)
 {
-    if (argc != 2)
+
+    if (argc != 2 || !file_etantion_check(argv[1]))
     {
         write(1, "Error\nYou have to add a file '.cub' as a parameter !!\n", 54);
         exit(EXIT_FAILURE);
@@ -97,35 +110,35 @@ int     main(int argc, char **argv)
     file_handle(argv[1]);
     rays = (t_rays *)malloc(sizeof(t_rays) * file.window_w_td);
 
-    printf("------- R -------\n");
-	printf("%d\n", file.window_w_td);
-	printf("%d\n", file.window_h_td);
-	printf("------- T -------\n");
-	printf("%s\n", file.no_texture);
-	printf("%s\n", file.so_texture);
-	printf("%s\n", file.we_texture);
-	printf("%s\n", file.ea_texture);
-	printf("%s\n", file.sprite_texture);
-	printf("------- F -------\n");
-	printf("%d\n", file.floor_color);
-	printf("------- C -------\n");
-	printf("%d\n", file.sky_color);
-	printf("------- M -------\n");
+    // printf("------- R -------\n");
+	// printf("%d\n", file.window_w_td);
+	// printf("%d\n", file.window_h_td);
+	// printf("------- T -------\n");
+	// printf("%s\n", file.no_texture);
+	// printf("%s\n", file.so_texture);
+	// printf("%s\n", file.we_texture);
+	// printf("%s\n", file.ea_texture);
+	// printf("%s\n", file.sprite_texture);
+	// printf("------- F -------\n");
+	// printf("%d\n", file.floor_color);
+	// printf("------- C -------\n");
+	// printf("%d\n", file.sky_color);
+	// printf("------- M -------\n");
     
 
 
-	int i = 0;
-	while (i < file.num_rows)
-	{
-		printf("%s", file.map[i]);
-		printf("\n");
-		i++;
-	}
-	printf("rows : %d\n", file.num_rows);
-	printf("coloms : %d\n", file.num_cols);
+	// int i = 0;
+	// while (i < file.num_rows)
+	// {
+	// 	printf("%s", file.map[i]);
+	// 	printf("\n");
+	// 	i++;
+	// }
+	// printf("rows : %d\n", file.num_rows);
+	// printf("coloms : %d\n", file.num_cols);
     
-    printf("%d\n", file.px);
-    printf("%d\n", file.py);
+    // printf("%d\n", file.px);
+    // printf("%d\n", file.py);
 //////////// Reading From File ////////
     init_struct(data);
     start_program(data);

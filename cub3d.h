@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/22 09:57:34 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/22 12:24:00 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct	s_struct
 	float		turn_speed;
 	float		rotation;
 	float		rotation_speed;
+	float		side;
 
 }				t_struct;
 
@@ -171,6 +172,9 @@ char	*ft_strdup(const char *str);
 char	*ft_strrev(char *str);
 char	*ft_strjoin(const char *s1, const char *s2);
 void	*ft_memset(void *str, int c, size_t n);
+char	*ft_strnstr(const char *str, const char *chr, size_t len);
+char	*ft_strrchr(const char *str, int c);
+int		ft_strncmp(const char *str1, const char *str2, size_t n);
 void	ft_putnbr(int n);
 size_t	ft_strlen(const char *str);
 void	handle_map_error();
