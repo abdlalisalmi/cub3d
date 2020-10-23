@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 17:11:33 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/22 10:47:54 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/23 09:41:36 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int     keypress(int keycode, t_struct *data)
         data->side = PI / 2;
         data->walk_direction = 1;
     }
+    else if (keycode == ESC)
+        exit_cub(EXIT_SUCCESS);
     return (0);
 }
 

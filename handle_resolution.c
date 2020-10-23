@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 21:42:49 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/20 11:48:14 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/23 09:51:38 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	my_atoi(const char *str)
 
 void	handle_resolution(char *data)
 {
-	file.map_tour++;
 	file.window_w_td = my_atoi(data);
 	file.window_h_td = my_atoi(data);
 	if (file.window_w_td < 0 || file.window_h_td < 0)

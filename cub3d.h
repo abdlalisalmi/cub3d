@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/22 12:24:00 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/23 10:09:15 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define SQUARE 200
+# define SQUARE 1000
 # define BUFFER_SIZE 2048
 // # define NUM_ROWS 15
 // # define NUM_COLS 25
@@ -128,11 +128,11 @@ typedef struct s_file
 	int window_w_td;
 	int window_h_td;
 
-	char no_texture[50];
-	char so_texture[50];
-	char we_texture[50];
-	char ea_texture[50];
-	char sprite_texture[50];
+	char no_texture[100];
+	char so_texture[100];
+	char we_texture[100];
+	char ea_texture[100];
+	char sprite_texture[100];
 
 	int floor_color;
 	int sky_color;
@@ -162,6 +162,7 @@ float   normalize_angle(float angle);
 void	draw_td_project(t_struct *data);
 
 void	file_handle();
+void	file_components_check();
 void	handle_resolution(char *data);
 void	handle_texture_path(char *data);
 void    handle_floor_sky_color(char *data);

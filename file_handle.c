@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 11:54:56 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/22 10:15:50 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/23 09:53:02 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void get_map_ready(char *cub_file)
 	close(fd);
 	if (file.player_found == 0)
 	{
-		write(1, "Error:\nYou don't have any player in the MAP !!\n",49);
+		write(1, "Error:\nYou don't have any player in the MAP or you dont have a MAP !!\n",72);
         exit_cub(EXIT_FAILURE);
 	}
 	handle_map_error();
@@ -38,8 +38,7 @@ void get_map_ready(char *cub_file)
 
 void	text_handle(char *data)
 {
-	file.map_tour = 0;
-	while (file.map_tour < 8)
+	while (data[file.i])
 	{
 		if (data[file.i] == 'R')
 			handle_resolution(data);

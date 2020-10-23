@@ -2,3 +2,5 @@
 - get player possition √
 - map corner check √
 - more than one player or multi player √
+- file extantion check √
+- map file components check √

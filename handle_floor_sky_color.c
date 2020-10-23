@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 19:37:36 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/16 14:01:07 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/23 09:51:54 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void    handle_floor_sky_color(char *data)
     int b;
 	char f_c;
 
-	file.map_tour++;
 	f_c = data[file.i];
     r = my_atoi(data);
     g = my_atoi(data);

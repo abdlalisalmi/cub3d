@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/22 12:25:58 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/23 10:22:12 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void init_struct(t_struct *data)
 	data->px = file.py * SQUARE;
 	data->py = file.px * SQUARE;
     data->walk_direction = 0;
-    data->move_speed = SQUARE / (SQUARE / 10);
+    data->move_speed = SQUARE / (SQUARE / 50);
     data->turn_direction = 0;
     data->turn_speed = 0.0000000005F;
     data->rotation = PI / file.player_view ;
@@ -71,7 +71,7 @@ int    start_program(t_struct *data)
 //////////// Texture ////////
     if (texture_handle(data))
     {
-        write(1, "Error\nTexture Error !!\n", 23);
+        write(1, "Error\nSomething wrong with the Textures !!\n", 45);
         exit_cub(EXIT_FAILURE);
     }
 //////////// Texture //////
@@ -140,6 +140,7 @@ int     main(int argc, char **argv)
     // printf("%d\n", file.px);
     // printf("%d\n", file.py);
 //////////// Reading From File ////////
+    file_components_check();
     init_struct(data);
     start_program(data);
     return (EXIT_SUCCESS);
