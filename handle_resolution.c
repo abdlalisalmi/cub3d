@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 21:42:49 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/23 09:51:38 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/25 11:16:05 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ void	handle_resolution(char *data)
 		write(1, "Error\nThe resolution should be greater than 0 !!\n", 52);
 		exit(EXIT_FAILURE);
 	}
+	if (file.window_w_td > 2560)
+		file.window_w_td = 2560;
+	else if (file.window_w_td < 50)
+		file.window_w_td = 50;
+	if (file.window_h_td > 1800)
+		file.window_h_td = 1800;
+	else if (file.window_h_td < 50)
+		file.window_h_td = 50;
 }
