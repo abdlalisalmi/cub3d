@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 10:59:50 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/16 17:52:14 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/25 11:13:46 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int		wall_texture(t_struct *data, int i, int y)
 
 		distanceFT = y + (float)(tr_project.project_wall_height / 2) - (float)(file.window_h_td / 2);
 		offsetY = distanceFT * ((float)SQUARE / (float)tr_project.project_wall_height);
+		offsetX = offsetX < 0 ? 0 : offsetX;
+		offsetY = offsetY < 0 ? 0 : offsetY;
 		texture[tx].color = texture[tx].colors[(SQUARE * offsetY) + offsetX];
 		data->img_matrix_td[(file.window_w_td * y) + i] = texture[tx].color;
 		y++;
