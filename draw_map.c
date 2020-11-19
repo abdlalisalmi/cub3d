@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 15:33:21 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/20 09:58:55 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/26 10:31:04 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,25 @@ int wall_check(float x, float y)
 	if (map_index_X > (SQUARE * file.num_cols) || map_index_Y > (SQUARE * file.num_rows))
 		return (1);
 
-	if (file.map[map_index_Y][map_index_X] == '1' || file.map[map_index_Y][map_index_X] == '2')
+	if (file.map[map_index_Y][map_index_X] == '1')
+		return (1);
+    return (0);
+}
+
+int sprite_check(float x, float y)
+{
+    int map_index_X;
+    int map_index_Y;
+
+    if (x < 0 || x > (SQUARE * file.num_cols) || y < 0 || y > (SQUARE * file.num_rows))
+        return (1);
+    map_index_X = floorf(x / SQUARE);
+    map_index_Y = floorf(y / SQUARE);
+
+	if (map_index_X > (SQUARE * file.num_cols) || map_index_Y > (SQUARE * file.num_rows))
+		return (1);
+
+	if (file.map[map_index_Y][map_index_X] == '2')
 		return (1);
     return (0);
 }

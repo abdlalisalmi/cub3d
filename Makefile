@@ -6,7 +6,7 @@
 #    By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 22:27:33 by aes-salm          #+#    #+#              #
-#    Updated: 2020/10/22 13:59:20 by aes-salm         ###   ########.fr        #
+#    Updated: 2020/10/26 19:30:01 by aes-salm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ re: fclean all
 run:
 	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit *.c
 	./a.out map.cub
+save:
+	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit *.c
+	./a.out map.cub --save
 de:
 	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit *.c -g
 s:

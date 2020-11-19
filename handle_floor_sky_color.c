@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 19:37:36 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/23 09:51:54 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/29 19:40:33 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,26 @@ int    color_convert(int r, int g, int b)
     return (hexa_to_decimal(color));
 }
 
-void    handle_floor_sky_color(char *data)
+void    handle_floor_sky_color(char *text)
 {
 	int r;
     int g;
     int b;
 	char f_c;
 
-	f_c = data[file.i];
-    r = my_atoi(data);
-    g = my_atoi(data);
-    b = my_atoi(data);
+	f_c = text[file.i];
+    r = my_atoi(text);
+    g = my_atoi(text);
+    b = my_atoi(text);
     if (r < 0 || g < 0 || b < 0)
     {
         write(1, "Error\nthe color code should be between 0 and 255 !!\n", 52);
+        
         exit(EXIT_FAILURE);
     }
+    printf("r: %d\n", r);
+    printf("g: %d\n", g);
+    printf("b: %d\n", b);
     if (f_c == 'F')
        file.floor_color = color_convert(r, g ,b);
     else if (f_c == 'C')

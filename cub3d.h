@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/25 11:13:49 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/29 12:03:53 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,10 @@
 
 # define SQUARE 1000
 # define BUFFER_SIZE 2048
-// # define NUM_ROWS 15
-// # define NUM_COLS 25
-// # define WINDOW_WIDTH SQUARE * NUM_COLS
-// # define WINDOW_HIGHT SQUARE * NUM_ROWS
-
-// # define WINDOW_W_TD 1920
-// # define WINDOW_H_TD 1080
-
 
 # define PI 3.14159265358979323846
 # define FOV_ANGLE 60 * (PI / 180)
+# define DEG(a)	((float)((a) * 180) / PI)
 
 # define INT_MAX 2147483647
 
@@ -75,6 +68,7 @@ typedef struct	s_struct
 	float		side;
 
 }				t_struct;
+t_struct		*data;
 
 typedef struct	s_rays
 {
@@ -114,8 +108,19 @@ typedef struct s_texture
 	int color;
 	int *wall;
 }				t_texture;
-t_texture		texture[4];
+t_texture		texture[5];
 
+typedef struct	s_sprite
+{
+	float	x;
+	float	y;
+	float	distance;
+	float	angle;
+	float	scale;
+	float	offsetX;
+	float	offsetY;
+}				t_sprites;
+t_sprites		*sprites;
 typedef struct s_file
 {
 	int i;
@@ -133,6 +138,7 @@ typedef struct s_file
 	char we_texture[100];
 	char ea_texture[100];
 	char sprite_texture[100];
+	int number_of_sprites;
 
 	int floor_color;
 	int sky_color;
@@ -145,10 +151,33 @@ typedef struct s_file
 	int py;
 	float player_view;
 	int player_found;
+	int			save_flag;
 	
 }				t_file;
 t_file			file;
 
+typedef struct			s_bitmap
+{
+	uint16_t			bit_per_pxl;
+	int					width_in_pxl;
+	uint32_t			info_header_size;
+	uint32_t			image_size;
+	uint32_t			bf_off_bits;
+	uint32_t			file_size;
+	uint16_t			biplanes;
+	unsigned char		*buf;
+	int					fd;
+	int					row;
+	int					col;
+}						t_bitmap;
+t_bitmap				bitmap;
+
+typedef struct			s_rgb
+{
+	int					r;
+	int					g;
+	int					b;
+}						t_rgb;
 
 void	draw_map(t_struct *data);
 void	draw_player(t_struct *data);
@@ -157,16 +186,23 @@ int		update(t_struct *data);
 int		keypress(int keycode, t_struct *data);
 int		keyrelease(int keycode, t_struct *data);
 int		wall_check(float x, float y);
+int		sprite_check(float x, float y);
 float   distance_between_points(float x1, float y1, float x2, float y2);
 float   normalize_angle(float angle);
 void	draw_td_project(t_struct *data);
+void	draw_sprites();
 
 void	file_handle();
 void	file_components_check();
-void	handle_resolution(char *data);
-void	handle_texture_path(char *data);
-void    handle_floor_sky_color(char *data);
+void	handle_resolution(char *text);
+void	handle_texture_path(char *text);
+void    handle_floor_sky_color(char *text);
 void	handle_map(char *line, int row);
+void	handle_map_error();
+void	init_sprites();
+float	normalize_sprite(float angle);
+void create_bmp_file();
+
 int		my_atoi(const char *str);
 char	*convert_to_hexa(unsigned long decimal, char c);
 char	*ft_strdup(const char *str);
@@ -178,7 +214,7 @@ char	*ft_strrchr(const char *str, int c);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
 void	ft_putnbr(int n);
 size_t	ft_strlen(const char *str);
-void	handle_map_error();
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 int		get_next_line(int fd, char **line);
 size_t	get_strlen(const char *str);

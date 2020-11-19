@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 21:08:56 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/03/11 21:40:57 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/25 14:50:32 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,13 @@ float   normalize_angle(float angle)
     else if (angle <= 0)
         angle += (2 * PI);
     return (angle);
+}
+
+float	normalize_sprite(float angle)
+{
+	while (angle - data->rotation > PI)
+        angle -= 2 * PI;
+    while (angle - data->rotation < -PI)
+        angle += 2 * PI;
+	return (angle);
 }

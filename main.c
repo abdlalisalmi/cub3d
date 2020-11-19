@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/23 10:22:12 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/26 19:29:17 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void init_struct(t_struct *data)
 {
-    file.player_found = 0;
 	data->px = file.py * SQUARE;
 	data->py = file.px * SQUARE;
     data->walk_direction = 0;
@@ -34,8 +33,9 @@ int    texture_handle(t_struct *data)
     texture[1].path = file.so_texture;
     texture[2].path = file.ea_texture;
     texture[3].path = file.we_texture;
+    texture[4].path = file.sprite_texture;
     tx = 0;
-    while (tx < 4)
+    while (tx < 5)
     {
         if (!(texture[tx].img = mlx_xpm_file_to_image(data->connection_id,
                     texture[tx].path, &texture[tx].width, &texture[tx].height)))
@@ -83,12 +83,12 @@ int    start_program(t_struct *data)
     return (0);
 }
 
-int     file_etantion_check(char *filename)
+int     file_etantion_check(char *filename, char *ext, char split)
 {
     char *point;
 
-    if((point = ft_strrchr(filename,'.')) != NULL ) {
-        if(ft_strncmp(point,".cub", ft_strlen(filename)) == 0)
+    if((point = ft_strrchr(filename, split)) != NULL ) {
+        if(ft_strncmp(point, ext, ft_strlen(filename)) == 0)
             return (1);
     }
     return (0);
@@ -96,19 +96,36 @@ int     file_etantion_check(char *filename)
 
 int     main(int argc, char **argv)
 {
-
-    if (argc != 2 || !file_etantion_check(argv[1]))
+    if (argc < 2 || argc > 3)
     {
-        write(1, "Error\nYou have to add a file '.cub' as a parameter !!\n", 54);
+        write(1, "Error\nYou have more than 3 parameters or less than 1 !!\n", 58);
         exit(EXIT_FAILURE);
     }
-    t_struct *data;
+    else
+    {
+        if (!file_etantion_check(argv[1], ".cub", '.'))
+        {
+            write(1, "Error\nYou have to add a file '.cub' as a parameter !!\n", 54);
+            exit(EXIT_FAILURE);
+        }
+        if (argc == 3 && file_etantion_check(argv[2], "-save", '-'))
+            file.save_flag = 1;
+        else if (argc == 3 && !file_etantion_check(argv[2], "-save", '-'))
+        {
+            write(1, "Error\nYou have to add a valid flag like --save !!\n", 52);
+            exit(EXIT_FAILURE);
+        }
+    }
+    
+
+    
 
     if (!(data = (t_struct*)malloc(sizeof(t_struct))))
         return (0);
 //////////// Reading From File ////////
     file_handle(argv[1]);
     rays = (t_rays *)malloc(sizeof(t_rays) * file.window_w_td);
+    sprites = (t_sprites *)malloc(sizeof(t_sprites) * file.number_of_sprites);
 
     // printf("------- R -------\n");
 	// printf("%d\n", file.window_w_td);
@@ -142,6 +159,8 @@ int     main(int argc, char **argv)
 //////////// Reading From File ////////
     file_components_check();
     init_struct(data);
+    init_sprites();
+    // printf("%d\n", file.save_flag);
     start_program(data);
     return (EXIT_SUCCESS);
 }

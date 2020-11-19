@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 14:15:44 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/22 10:14:58 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/25 11:49:41 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void    handle_map_line(char *line, int row)
     i = 0;
     while (i < file.num_cols && line[i])
     {
+        if (line[i] == '2')
+            file.number_of_sprites++;
         if (line[i] != 'N' && line[i] != 'W' && line[i] != 'S' && 
         line[i] != 'E' && line[i] != '1' && line[i] != '0' && 
         line[i] != '2' && line[i] != ' ')

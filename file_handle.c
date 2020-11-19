@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 11:54:56 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/23 09:53:02 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/25 12:49:05 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,18 @@ void get_map_ready(char *cub_file)
 	handle_map_error();
 }
 
-void	text_handle(char *data)
+void	text_handle(char *text)
 {
-	while (data[file.i])
+	while (text[file.i])
 	{
-		if (data[file.i] == 'R')
-			handle_resolution(data);
-		if (data[file.i] == 'N' || (data[file.i] == 'S' && data[file.i + 1] == 'O') ||
-				 data[file.i] == 'W' || data[file.i] == 'E' ||
-				 (data[file.i] == 'S' && data[file.i + 1] == ' '))
-			handle_texture_path(data);
-		if (data[file.i] == 'F' || data[file.i] == 'C')
-			handle_floor_sky_color(data);
+		if (text[file.i] == 'R')
+			handle_resolution(text);
+		if (text[file.i] == 'N' || (text[file.i] == 'S' && text[file.i + 1] == 'O') ||
+				 text[file.i] == 'W' || text[file.i] == 'E' ||
+				 (text[file.i] == 'S' && text[file.i + 1] == ' '))
+			handle_texture_path(text);
+		if (text[file.i] == 'F' || text[file.i] == 'C')
+			handle_floor_sky_color(text);
 		file.i++;
 	}
 }
@@ -55,14 +55,14 @@ void	text_handle(char *data)
 void	file_handle(char *cub_file)
 {
 	int fd;
-	char *data;
+	char *text;
     char *line;
 
-	data = malloc(sizeof(char) * BUFFER_SIZE);
+	text = malloc(sizeof(char) * BUFFER_SIZE);
 	file.i = 0;
 	fd = open(cub_file, O_RDONLY);
-	read(fd , data, BUFFER_SIZE);
-	text_handle(data);
+	read(fd , text, BUFFER_SIZE);
+	text_handle(text);
 
 	file.num_rows = 0;
 	file.num_cols = 0;

@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 21:42:49 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/25 11:16:05 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/10/29 20:23:32 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ int	my_atoi(const char *str)
 	return (sign == 1) ? (-result) : result;
 }
 
-void	handle_resolution(char *data)
+void	handle_resolution(char *text)
 {
-	file.window_w_td = my_atoi(data);
-	file.window_h_td = my_atoi(data);
-	if (file.window_w_td < 0 || file.window_h_td < 0)
+	file.window_w_td = my_atoi(text);
+	file.window_h_td = my_atoi(text);
+	if (file.window_w_td <= 0 || file.window_h_td <= 0)
 	{
-		write(1, "Error\nThe resolution should be greater than 0 !!\n", 52);
+		write(1, "Error\nBad values in the resolution, should be greater than 0 !!\n", 66);
 		exit(EXIT_FAILURE);
 	}
 	if (file.window_w_td > 2560)
