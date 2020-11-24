@@ -1,4 +1,4 @@
-R 1200 
+R 1200 800
 
 NO ./src/texture/1000.xpm
 SO ./src/texture/1000.xpm
@@ -6,7 +6,7 @@ WE ./src/texture/1000.xpm
 EA ./src/texture/1000.xpm
 
 S ./src/texture/sprite.xpm
-F 47, 53, 
+F 47, 53, 40
 C 45, 152, 218
 
 
