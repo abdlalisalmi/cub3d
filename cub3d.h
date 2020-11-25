@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/29 12:03:53 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/25 09:37:17 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,32 @@ typedef struct s_file
 }				t_file;
 t_file			file;
 
+typedef struct s_rays_norm
+{
+    float Xinter_cept;
+    float Yinter_cept;
+    float Xstep;
+    float Ystep;
+
+	//horizontal_wall_hint_find
+	float next_horz_x;
+    float next_horz_y;
+    int found_horz_wall;
+    float wall_horz_hit_X;
+    float wall_horz_hit_Y;
+    float horz_hit_distance;
+
+	//vertical_wall_hint_find
+	float   next_vert_x;
+    float   next_vert_y;
+    int     found_vert_wall;
+    float   wall_vert_hit_X;
+    float   wall_vert_hit_Y;
+    float   vert_hit_distance;
+
+}				t_rays_norm;
+t_rays_norm			rnorm;
+
 typedef struct			s_bitmap
 {
 	uint16_t			bit_per_pxl;
@@ -182,6 +208,8 @@ typedef struct			s_rgb
 void	draw_map(t_struct *data);
 void	draw_player(t_struct *data);
 void	draw_rays(t_struct *data);
+void    horizontal_wall_hint_find(int colume_id);
+void    vertical_wall_hint_find(int colume_id);
 int		update(t_struct *data);
 int		keypress(int keycode, t_struct *data);
 int		keyrelease(int keycode, t_struct *data);
@@ -201,7 +229,7 @@ void	handle_map(char *line, int row);
 void	handle_map_error();
 void	init_sprites();
 float	normalize_sprite(float angle);
-void create_bmp_file();
+void	create_bmp_file();
 
 int		my_atoi(const char *str);
 char	*convert_to_hexa(unsigned long decimal, char c);
@@ -224,4 +252,5 @@ char	*get_strjoin(char **line, char *tmp);
 void	free_all(char **tmp);
 
 void	exit_cub(int status);
+int		destroy_window_button();
 #endif

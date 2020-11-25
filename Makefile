@@ -6,14 +6,13 @@
 #    By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 22:27:33 by aes-salm          #+#    #+#              #
-#    Updated: 2020/10/26 19:30:01 by aes-salm         ###   ########.fr        #
+#    Updated: 2020/11/25 08:59:40 by aes-salm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME= cub3d.a
 
-SRC= main.c \
-	draw_map.c \
+SRC= *.c src/ft/*.c src/file_handle/*.c src/utils/*.c src/draw/*.c
 
 all: $(NAME)
 
@@ -30,13 +29,13 @@ fclean: clean
 re: fclean all
 
 run:
-	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit *.c
+	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit $(SRC)
 	./a.out map.cub
 save:
-	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit *.c
+	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit $(SRC)
 	./a.out map.cub --save
 de:
-	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit *.c -g
+	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit $(SRC) -g
 s:
-	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit *.c -fsanitize=address -g3
+	gcc -Wall -Werror -Wextra -l mlx -framework OpenGL -framework AppKit $(SRC) -fsanitize=address -g3
 # gcc *.c -L/usr/local/lib -l mlx /usr/local/lib/libmlx.a -lXext -lX11 -lm

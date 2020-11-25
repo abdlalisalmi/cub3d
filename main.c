@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/10/26 19:29:17 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/24 20:46:23 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int    start_program(t_struct *data)
     
 	mlx_hook(data->window_id, 2, 0, keypress, data);
     mlx_hook(data->window_id, 3, 0, keyrelease, data);
+    mlx_hook(data->window_id, 17, 1L<<17, destroy_window_button, data);
     mlx_loop_hook(data->connection_id, update, data);
     mlx_loop(data->connection_id);
     return (0);

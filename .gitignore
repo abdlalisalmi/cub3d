@@ -1,5 +1,7 @@
 .vscode/
 a.out.dSYM/
+a.out
+screenshot.bmp
 .DS_Store
 src/.DS_Store
 src/texture/.DS_Store
