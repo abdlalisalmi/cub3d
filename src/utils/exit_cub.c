@@ -6,19 +6,19 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 22:50:02 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/25 09:02:24 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/25 14:35:23 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-int destroy_window_button()
+int		destroy_window_button(void)
 {
-    exit_cub(0);
-    return (0);
+	exit_cub(0);
+	return (0);
 }
 
-void    exit_cub(int status)
+void	exit_cub(int status)
 {
-    exit(status);
+	exit(status);
 }
