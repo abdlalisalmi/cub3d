@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 11:10:48 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/25 09:01:06 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:09:00 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_rgb	*g_rgb;
 
-void screenshot_error(char *message)
+void	screenshot_error(char *message)
 {
 	write(1, "Error:\n", 8);
 	write(1, message, ft_strlen(message));
@@ -22,7 +22,7 @@ void screenshot_error(char *message)
 	exit_cub(EXIT_FAILURE);
 }
 
-void color_converter(int hex_value)
+void	color_converter(int hex_value)
 {
 	if (!(g_rgb = malloc(sizeof(t_rgb))))
 		screenshot_error("failed to alloc the RGB colors !!");
@@ -67,7 +67,7 @@ void	screen_init(unsigned char *header)
 	ft_memcpy(header + 28, &(bitmap.bit_per_pxl), 2);
 }
 
-void create_bmp_file()
+void	create_bmp_file(void)
 {
 	int				x;
 	const char		*file_name = "screenshot.bmp";

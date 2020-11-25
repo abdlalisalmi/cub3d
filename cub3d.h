@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/25 09:37:17 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/25 14:16:27 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ typedef struct	s_sprite
 	float	distance;
 	float	angle;
 	float	scale;
-	float	offsetX;
-	float	offsetY;
+	float	offset_x;
+	float	offset_y;
 }				t_sprites;
 t_sprites		*sprites;
 typedef struct s_file
@@ -181,6 +181,20 @@ typedef struct s_rays_norm
 
 }				t_rays_norm;
 t_rays_norm			rnorm;
+typedef struct s_norm
+{
+	int			s_rx;
+	int			s_ry;
+
+	int		tx;
+	int		tx_offset_x;
+	int		tx_offset_y;
+	float	tx_distance_ft;
+
+    int rows;
+    int cols;
+}				t_norm;
+t_norm			norm;
 
 typedef struct			s_bitmap
 {
@@ -226,7 +240,7 @@ void	handle_resolution(char *text);
 void	handle_texture_path(char *text);
 void    handle_floor_sky_color(char *text);
 void	handle_map(char *line, int row);
-void	handle_map_error();
+void	handle_map_error(void);
 void	init_sprites();
 float	normalize_sprite(float angle);
 void	create_bmp_file();

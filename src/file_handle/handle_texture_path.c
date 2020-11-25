@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 18:37:57 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/25 09:01:49 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/25 14:29:10 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	path_fill(char *text, char *tmp)
 	}
 }
 
-void    handle_texture_path(char *text)
+void	handle_texture_path(char *text)
 {
 	if (text[file.i] == 'N')
 		path_fill(text, file.no_texture);
