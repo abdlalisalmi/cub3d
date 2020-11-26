@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 19:37:36 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/26 14:56:58 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/26 18:47:16 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ void	handle_floor_sky_color(char *text)
 	r = get_color_value(text);
 	g = get_color_value(text);
 	b = get_color_value(text);
-	if (r < 0 || g < 0 || b < 0)
+	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 	{
-		write(1, "Error\nthe color RGB code", 26);
+		write(1, "Error\nthe color RGB code ", 26);
 		write(1, "should be between 0 and 255 !!\n", 31);
 		exit(EXIT_FAILURE);
 	}

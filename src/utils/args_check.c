@@ -6,13 +6,13 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 14:54:13 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/26 08:58:42 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/26 18:54:47 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-int		file_etantion_check(char *filename, char *ext, char split)
+int		file_extention_check(char *filename, char *ext, char split)
 {
 	char *ptr;
 
@@ -41,7 +41,7 @@ void	args_check(int argc, char **argv)
 	}
 	else
 	{
-		if (!file_etantion_check(argv[1], ".cub", '.'))
+		if (!file_extention_check(argv[1], ".cub", '.'))
 		{
 			write(1, "Error\nYou have to add a file '.cub' as argument\n", 54);
 			exit(EXIT_FAILURE);
