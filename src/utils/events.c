@@ -6,51 +6,51 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 17:11:33 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/25 14:34:29 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/26 13:31:08 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-int		keypress(int keycode, t_struct *data)
+int		keypress(int keycode)
 {
 	if (keycode == W)
-		data->walk_direction = 1;
+		g_data.walk_direction = 1;
 	else if (keycode == S)
-		data->walk_direction = -1;
+		g_data.walk_direction = -1;
 	else if (keycode == RIGHT)
-		data->turn_direction = 1;
+		g_data.turn_direction = 1;
 	else if (keycode == LEFT)
-		data->turn_direction = -1;
+		g_data.turn_direction = -1;
 	else if (keycode == A)
 	{
-		data->side = -(PI / 2);
-		data->walk_direction = 1;
+		g_data.side = -(PI / 2);
+		g_data.walk_direction = 1;
 	}
 	else if (keycode == D)
 	{
-		data->side = PI / 2;
-		data->walk_direction = 1;
+		g_data.side = PI / 2;
+		g_data.walk_direction = 1;
 	}
 	else if (keycode == ESC)
 		exit_cub(EXIT_SUCCESS);
 	return (0);
 }
 
-int		keyrelease(int keycode, t_struct *data)
+int		keyrelease(int keycode)
 {
 	if (keycode == W)
-		data->walk_direction = 0;
+		g_data.walk_direction = 0;
 	else if (keycode == S)
-		data->walk_direction = 0;
+		g_data.walk_direction = 0;
 	else if (keycode == RIGHT)
-		data->turn_direction = 0;
+		g_data.turn_direction = 0;
 	else if (keycode == LEFT)
-		data->turn_direction = 0;
+		g_data.turn_direction = 0;
 	else if (keycode == A || keycode == D)
 	{
-		data->side = 0;
-		data->walk_direction = 0;
+		g_data.side = 0;
+		g_data.walk_direction = 0;
 	}
 	return (0);
 }

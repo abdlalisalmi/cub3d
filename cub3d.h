@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/25 14:16:27 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/26 13:48:07 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 
 # define INT_MAX 2147483647
 
-
 # define W 13
 # define S 1
 # define A 0
@@ -42,159 +41,154 @@
 # define RIGHT 124
 # define LEFT 123
 
-typedef struct	s_struct
+typedef struct			s_struct
 {
-	void	*window_id;
-	void	*connection_id;
+	void				*window_id;
+	void				*connection_id;
 
-	void	*image;
-	int		*img_matrix;
+	void				*image;
+	int					*img_matrix;
 
-	void	*image_td;
-	int		*img_matrix_td;
+	void				*image_td;
+	int					*img_matrix_td;
 
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
+	int					bits_per_pixel;
+	int					size_line;
+	int					endian;
 
-	float		px;
-	float		py;
-	float		walk_direction;
-	float		move_speed;
-	float		turn_direction;
-	float		turn_speed;
-	float		rotation;
-	float		rotation_speed;
-	float		side;
+	float				px;
+	float				py;
+	float				walk_direction;
+	float				move_speed;
+	float				turn_direction;
+	float				turn_speed;
+	float				rotation;
+	float				rotation_speed;
+	float				side;
 
-}				t_struct;
-t_struct		*data;
+}						t_struct;
 
-typedef struct	s_rays
+typedef struct			s_rays
 {
-	float		ray_angle;
-	float		wall_hit_X;
-	float		wall_hit_Y;
-	float		wall_distance;
-	int			was_hit_vertical;
-	int			ray_facing_up;
-	int			ray_facing_down;
-	int			ray_facing_R;
-	int			ray_facing_L;
-}				t_rays;
-t_rays *rays;
+	float				ray_angle;
+	float				wall_hit_x;
+	float				wall_hit_y;
+	float				wall_distance;
+	int					was_hit_vertical;
+	int					ray_facing_up;
+	int					ray_facing_down;
+	int					ray_facing_r;
+	int					ray_facing_l;
+}						t_rays;
 
-typedef struct	s_tr_project
+typedef struct			s_tr_project
 {
-	float	real_distance;
-	float	distance_project_plane;
-	float	project_wall_height;
-	int		wall_top_pixel;
-	int		wall_bottom_pixel;
-}				t_tr_project;
-t_tr_project	tr_project;
+	float				real_distance;
+	float				distance_project_plane;
+	float				project_wall_height;
+	int					wall_top_pixel;
+	int					wall_bottom_pixel;
+}						t_tr_project;
 
-typedef struct s_texture
+typedef struct			s_texture
 {
-	void *img;
-	char *path;
-	int *colors;
-	int width;
-    int height;
-	int a;
-	int b;
-	int c;
+	void				*img;
+	char				*path;
+	int					*colors;
+	int					width;
+	int					height;
+	int					a;
+	int					b;
+	int					c;
 
-	int color;
-	int *wall;
-}				t_texture;
-t_texture		texture[5];
+	int					color;
+	int					*wall;
+}						t_texture;
 
-typedef struct	s_sprite
+typedef struct			s_sprite
 {
-	float	x;
-	float	y;
-	float	distance;
-	float	angle;
-	float	scale;
-	float	offset_x;
-	float	offset_y;
-}				t_sprites;
-t_sprites		*sprites;
-typedef struct s_file
+	float				x;
+	float				y;
+	float				distance;
+	float				angle;
+	float				scale;
+	float				offset_x;
+	float				offset_y;
+}						t_sprites;
+
+typedef struct			s_file
 {
-	int i;
-	int num_rows;
-	int num_cols;
+	int					i;
+	int					num_rows;
+	int					num_cols;
 
-	int window_heigth;
-	int window_width;
-	
-	int window_w_td;
-	int window_h_td;
+	int					window_heigth;
+	int					window_width;
 
-	char no_texture[100];
-	char so_texture[100];
-	char we_texture[100];
-	char ea_texture[100];
-	char sprite_texture[100];
-	int number_of_sprites;
+	int					window_w_td;
+	int					window_h_td;
 
-	int floor_color;
-	int sky_color;
+	char				no_texture[100];
+	char				so_texture[100];
+	char				we_texture[100];
+	char				ea_texture[100];
+	char				sprite_texture[100];
+	int					number_of_sprites;
 
-	char **map;
-	int map_tour;
-	int row;
+	int					floor_color;
+	int					sky_color;
 
-	int px;
-	int py;
-	float player_view;
-	int player_found;
-	int			save_flag;
-	
-}				t_file;
-t_file			file;
+	char				**map;
+	int					map_tour;
+	int					row;
 
-typedef struct s_rays_norm
+	int					px;
+	int					py;
+	float				player_view;
+	int					player_found;
+	int					save_flag;
+
+}						t_file;
+
+typedef struct			s_rays_norm
 {
-    float Xinter_cept;
-    float Yinter_cept;
-    float Xstep;
-    float Ystep;
+	float				xinter_cept;
+	float				yinter_cept;
+	float				xstep;
+	float				ystep;
 
-	//horizontal_wall_hint_find
-	float next_horz_x;
-    float next_horz_y;
-    int found_horz_wall;
-    float wall_horz_hit_X;
-    float wall_horz_hit_Y;
-    float horz_hit_distance;
+	float				next_horz_x;
+	float				next_horz_y;
+	int					found_horz_wall;
+	float				wall_horz_hit_x;
+	float				wall_horz_hit_y;
+	float				horz_hit_distance;
 
-	//vertical_wall_hint_find
-	float   next_vert_x;
-    float   next_vert_y;
-    int     found_vert_wall;
-    float   wall_vert_hit_X;
-    float   wall_vert_hit_Y;
-    float   vert_hit_distance;
+	float				next_vert_x;
+	float				next_vert_y;
+	int					found_vert_wall;
+	float				wall_vert_hit_x;
+	float				wall_vert_hit_y;
+	float				vert_hit_distance;
 
-}				t_rays_norm;
-t_rays_norm			rnorm;
-typedef struct s_norm
+}						t_rays_norm;
+
+typedef struct			s_norm
 {
-	int			s_rx;
-	int			s_ry;
+	int					s_rx;
+	int					s_ry;
 
-	int		tx;
-	int		tx_offset_x;
-	int		tx_offset_y;
-	float	tx_distance_ft;
+	int					tx;
+	int					tx_offset_x;
+	int					tx_offset_y;
+	float				tx_distance_ft;
 
-    int rows;
-    int cols;
-}				t_norm;
-t_norm			norm;
+	int					rows;
+	int					cols;
+
+	int					x;
+	int					y;
+}						t_norm;
 
 typedef struct			s_bitmap
 {
@@ -210,7 +204,6 @@ typedef struct			s_bitmap
 	int					row;
 	int					col;
 }						t_bitmap;
-t_bitmap				bitmap;
 
 typedef struct			s_rgb
 {
@@ -219,52 +212,68 @@ typedef struct			s_rgb
 	int					b;
 }						t_rgb;
 
-void	draw_map(t_struct *data);
-void	draw_player(t_struct *data);
-void	draw_rays(t_struct *data);
-void    horizontal_wall_hint_find(int colume_id);
-void    vertical_wall_hint_find(int colume_id);
-int		update(t_struct *data);
-int		keypress(int keycode, t_struct *data);
-int		keyrelease(int keycode, t_struct *data);
-int		wall_check(float x, float y);
-int		sprite_check(float x, float y);
-float   distance_between_points(float x1, float y1, float x2, float y2);
-float   normalize_angle(float angle);
-void	draw_td_project(t_struct *data);
-void	draw_sprites();
+t_struct				g_data;
+t_rays					*g_rays;
+t_tr_project			g_tr_project;
+t_texture				g_texture[5];
+t_sprites				*g_sprites;
+t_file					g_file;
+t_rays_norm				g_rnorm;
+t_norm					g_norm;
+t_bitmap				g_bitmap;
 
-void	file_handle();
-void	file_components_check();
-void	handle_resolution(char *text);
-void	handle_texture_path(char *text);
-void    handle_floor_sky_color(char *text);
-void	handle_map(char *line, int row);
-void	handle_map_error(void);
-void	init_sprites();
-float	normalize_sprite(float angle);
-void	create_bmp_file();
+void					draw_map(t_struct *data);
+void					draw_player();
+void					draw_rays();
+void					horizontal_wall_hint_find(int colume_id);
+void					vertical_wall_hint_find(int colume_id);
+int						update();
+int						keypress(int keycode);
+int						keyrelease(int keycode);
+int						wall_check(float x, float y);
+int						sprite_check(float x, float y);
+float					distance_between_points(float x1, float y1,
+							float x2, float y2);
+float					normalize_angle(float angle);
+void					draw_td_project();
+void					draw_sprites();
 
-int		my_atoi(const char *str);
-char	*convert_to_hexa(unsigned long decimal, char c);
-char	*ft_strdup(const char *str);
-char	*ft_strrev(char *str);
-char	*ft_strjoin(const char *s1, const char *s2);
-void	*ft_memset(void *str, int c, size_t n);
-char	*ft_strnstr(const char *str, const char *chr, size_t len);
-char	*ft_strrchr(const char *str, int c);
-int		ft_strncmp(const char *str1, const char *str2, size_t n);
-void	ft_putnbr(int n);
-size_t	ft_strlen(const char *str);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
+void					args_check(int argc, char **argv);
+void					file_handle();
+void					file_components_check();
+void					handle_resolution(char *text);
+void					handle_texture_path(char *text);
+void					handle_floor_sky_color(char *text);
+void					handle_map(char *line, int row);
+void					handle_map_error(void);
+void					init_sprites();
+float					normalize_sprite(float angle);
+void					create_bmp_file();
 
-int		get_next_line(int fd, char **line);
-size_t	get_strlen(const char *str);
-char	*get_strdup(const char *str);
-char	*get_substr(char const *s, unsigned int start, size_t len);
-char	*get_strjoin(char **line, char *tmp);
-void	free_all(char **tmp);
+int						my_atoi(const char *str);
+char					*convert_to_hexa(unsigned long decimal, char c);
+char					*ft_strdup(const char *str);
+char					*ft_strrev(char *str);
+char					*ft_strjoin(const char *s1, const char *s2);
+void					*ft_memset(void *str, int c, size_t n);
+char					*ft_strnstr(const char *str, const char *chr,
+							size_t len);
+char					*ft_strrchr(const char *str, int c);
+int						ft_strncmp(const char *str1, const char *str2,
+							size_t n);
+void					ft_putnbr(int n);
+size_t					ft_strlen(const char *str);
+void					*ft_memcpy(void *dest, const void *src, size_t n);
 
-void	exit_cub(int status);
-int		destroy_window_button();
+int						get_next_line(int fd, char **line);
+size_t					get_strlen(const char *str);
+char					*get_strdup(const char *str);
+char					*get_substr(char const *s, unsigned int start,
+							size_t len);
+char					*get_strjoin(char **line, char *tmp);
+void					free_all(char **tmp);
+
+void					exit_cub(int status);
+int						destroy_window_button();
+
 #endif

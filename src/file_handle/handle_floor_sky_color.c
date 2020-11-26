@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 19:37:36 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/25 12:13:29 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/26 14:56:58 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ int		get_color_value(const char *str)
 	result = 0;
 	sign = 0;
 	value_found = -1;
-	while (str[file.i] != '\n' && !((str[file.i] >= '0') &&
-				(str[file.i] <= '9')) && str[file.i] != '-')
-		file.i++;
-	sign = (str[file.i] == '-') ? 1 : 0;
-	while (str[file.i] == '-' || str[file.i] == '+')
-		file.i++;
-	while ((str[file.i] >= '0') && (str[file.i] <= '9'))
+	while (str[g_file.i] != '\n' && !((str[g_file.i] >= '0') &&
+				(str[g_file.i] <= '9')) && str[g_file.i] != '-')
+		g_file.i++;
+	sign = (str[g_file.i] == '-') ? 1 : 0;
+	while (str[g_file.i] == '-' || str[g_file.i] == '+')
+		g_file.i++;
+	while ((str[g_file.i] >= '0') && (str[g_file.i] <= '9'))
 	{
 		value_found = 1;
 		result = result * 10;
-		result += (int)str[file.i] - '0';
-		file.i++;
+		result += (int)str[g_file.i] - '0';
+		g_file.i++;
 	}
 	if (value_found < 0)
 		return (-1);
@@ -62,6 +62,7 @@ int		hexa_to_decimal(char *hexa, int len)
 		}
 		i--;
 	}
+    free_all(&hexa);
 	return (dec_val);
 }
 
@@ -77,6 +78,9 @@ int		color_convert(int r, int g, int b)
 	b_hexa = convert_to_hexa(b, 'X');
 	color = ft_strjoin(r_hexa, g_hexa);
 	color = ft_strjoin(color, b_hexa);
+    free_all(&r_hexa);
+    free_all(&g_hexa);
+    free_all(&b_hexa);
 	return (hexa_to_decimal(color, ft_strlen(color)));
 }
 
@@ -87,7 +91,7 @@ void	handle_floor_sky_color(char *text)
 	int		b;
 	char	f_c;
 
-	f_c = text[file.i];
+	f_c = text[g_file.i];
 	r = get_color_value(text);
 	g = get_color_value(text);
 	b = get_color_value(text);
@@ -98,7 +102,7 @@ void	handle_floor_sky_color(char *text)
 		exit(EXIT_FAILURE);
 	}
 	if (f_c == 'F')
-		file.floor_color = color_convert(r, g, b);
+		g_file.floor_color = color_convert(r, g, b);
 	else if (f_c == 'C')
-		file.sky_color = color_convert(r, g, b);
+		g_file.sky_color = color_convert(r, g, b);
 }

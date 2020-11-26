@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 11:10:48 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/25 10:09:00 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/26 14:46:02 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,36 +35,36 @@ void	screen_data(int x)
 {
 	int index;
 
-	index = bitmap.row * file.window_w_td + bitmap.col;
+	index = g_bitmap.row * g_file.window_w_td + g_bitmap.col;
 	index = index < 0 ? index * (-1) : index;
-	color_converter((uint32_t)data->img_matrix_td[index]);
-	bitmap.buf[x * bitmap.width_in_pxl
-		+ bitmap.col * 3 + 0] = g_rgb->b;
-	bitmap.buf[x * bitmap.width_in_pxl
-		+ bitmap.col * 3 + 1] = g_rgb->g;
-	bitmap.buf[x * bitmap.width_in_pxl
-		+ bitmap.col * 3 + 2] = g_rgb->r;
+	color_converter((uint32_t)g_data.img_matrix_td[index]);
+	g_bitmap.buf[x * g_bitmap.width_in_pxl
+		+ g_bitmap.col * 3 + 0] = g_rgb->b;
+	g_bitmap.buf[x * g_bitmap.width_in_pxl
+		+ g_bitmap.col * 3 + 1] = g_rgb->g;
+	g_bitmap.buf[x * g_bitmap.width_in_pxl
+		+ g_bitmap.col * 3 + 2] = g_rgb->r;
 	free(g_rgb);
 }
 
 void	screen_init(unsigned char *header)
 {
-	bitmap.bit_per_pxl = 24;
-	bitmap.width_in_pxl = ((file.window_w_td *
-				bitmap.bit_per_pxl + 31) / 32) * 4;
-	bitmap.image_size = bitmap.width_in_pxl * file.window_h_td;
-	bitmap.info_header_size = 40;
-	bitmap.bf_off_bits = 54;
-	bitmap.file_size = 54 + bitmap.image_size;
-	bitmap.biplanes = 1;
+	g_bitmap.bit_per_pxl = 24;
+	g_bitmap.width_in_pxl = ((g_file.window_w_td *
+				g_bitmap.bit_per_pxl + 31) / 32) * 4;
+	g_bitmap.image_size = g_bitmap.width_in_pxl * g_file.window_h_td;
+	g_bitmap.info_header_size = 40;
+	g_bitmap.bf_off_bits = 54;
+	g_bitmap.file_size = 54 + g_bitmap.image_size;
+	g_bitmap.biplanes = 1;
 	ft_memcpy(header, "BM", 2);
-	ft_memcpy(header + 2, &(bitmap.file_size), 4);
-	ft_memcpy(header + 10, &(bitmap.bf_off_bits), 4);
-	ft_memcpy(header + 14, &(bitmap.info_header_size), 4);
-	ft_memcpy(header + 18, &(file.window_w_td), 4);
-	ft_memcpy(header + 22, &(file.window_h_td), 4);
-	ft_memcpy(header + 26, &(bitmap.biplanes), 2);
-	ft_memcpy(header + 28, &(bitmap.bit_per_pxl), 2);
+	ft_memcpy(header + 2, &(g_bitmap.file_size), 4);
+	ft_memcpy(header + 10, &(g_bitmap.bf_off_bits), 4);
+	ft_memcpy(header + 14, &(g_bitmap.info_header_size), 4);
+	ft_memcpy(header + 18, &(g_file.window_w_td), 4);
+	ft_memcpy(header + 22, &(g_file.window_h_td), 4);
+	ft_memcpy(header + 26, &(g_bitmap.biplanes), 2);
+	ft_memcpy(header + 28, &(g_bitmap.bit_per_pxl), 2);
 }
 
 void	create_bmp_file(void)
@@ -76,22 +76,21 @@ void	create_bmp_file(void)
 
 	ft_memset(header, 0, len);
 	screen_init(header);
-	if (!(bitmap.buf = malloc((bitmap.image_size))))
-		screenshot_error("failed to alloc the BITMAP buffer !!");
+	if (!(g_bitmap.buf = malloc((g_bitmap.image_size))))
+		screenshot_error("failed to alloc the bitmap buffer !!");
 	x = 0;
-	bitmap.row = file.window_h_td - 1;
-	while (bitmap.row-- >= 0)
+	g_bitmap.row = g_file.window_h_td - 1;
+	while (g_bitmap.row-- >= 0)
 	{
-		bitmap.col = 0;
-		while (bitmap.col++ < file.window_w_td)
+		g_bitmap.col = 0;
+		while (g_bitmap.col++ < g_file.window_w_td)
 			screen_data(x);
 		x++;
 	}
-	bitmap.fd = open(file_name, O_WRONLY | O_CREAT);
-	write(bitmap.fd, header, len);
-	write(bitmap.fd, bitmap.buf, bitmap.image_size);
-	close(bitmap.fd);
-	free(bitmap.buf);
-	if (file.save_flag == 2)
-		exit_cub(EXIT_SUCCESS);
+	g_bitmap.fd = open(file_name, O_WRONLY | O_CREAT);
+	write(g_bitmap.fd, header, len);
+	write(g_bitmap.fd, g_bitmap.buf, g_bitmap.image_size);
+	close(g_bitmap.fd);
+	free(g_bitmap.buf);
+	exit_cub(EXIT_SUCCESS);
 }

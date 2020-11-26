@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 11:54:56 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/25 11:58:58 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/26 14:42:03 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	get_map_ready(char *cub_file)
 	char	*line;
 
 	i = 0;
-	file.map = (char **)malloc((file.num_rows) * sizeof(char*));
-	while (i < file.num_rows)
-		file.map[i++] = (char *)malloc((file.num_cols + 1) * sizeof(char));
-	file.row = 0;
+	g_file.map = (char **)malloc((g_file.num_rows) * sizeof(char*));
+	while (i < g_file.num_rows)
+		g_file.map[i++] = (char *)malloc((g_file.num_cols + 1) * sizeof(char));
+	g_file.row = 0;
 	fd = open(cub_file, O_RDONLY);
 	while (get_next_line(fd, &line))
-		handle_map(line, file.row);
-	handle_map(line, file.row - 1);
+		handle_map(line, g_file.row);
+	handle_map(line, g_file.row - 1);
 	close(fd);
-	if (file.player_found == 0)
+	if (g_file.player_found == 0)
 	{
 		write(1, "Error:\nYou don't have any player in the MAP!!\n", 72);
 		exit_cub(EXIT_FAILURE);
@@ -38,18 +38,18 @@ void	get_map_ready(char *cub_file)
 
 void	text_handle(char *text)
 {
-	while (text[file.i])
+	while (text[g_file.i])
 	{
-		if (text[file.i] == 'R')
+		if (text[g_file.i] == 'R')
 			handle_resolution(text);
-		if (text[file.i] == 'N' || (text[file.i] == 'S' &&
-			text[file.i + 1] == 'O') ||
-			text[file.i] == 'W' || text[file.i] == 'E' ||
-			(text[file.i] == 'S' && text[file.i + 1] == ' '))
+		if (text[g_file.i] == 'N' || (text[g_file.i] == 'S' &&
+			text[g_file.i + 1] == 'O') ||
+			text[g_file.i] == 'W' || text[g_file.i] == 'E' ||
+			(text[g_file.i] == 'S' && text[g_file.i + 1] == ' '))
 			handle_texture_path(text);
-		if (text[file.i] == 'F' || text[file.i] == 'C')
+		if (text[g_file.i] == 'F' || text[g_file.i] == 'C')
 			handle_floor_sky_color(text);
-		file.i++;
+		g_file.i++;
 	}
 }
 
@@ -60,20 +60,21 @@ void	file_handle(char *cub_file)
 	char	*line;
 
 	text = malloc(sizeof(char) * BUFFER_SIZE);
-	file.i = 0;
+	g_file.i = 0;
 	fd = open(cub_file, O_RDONLY);
 	read(fd, text, BUFFER_SIZE);
 	text_handle(text);
-	file.num_rows = 0;
-	file.num_cols = 0;
+    free(text);
+	g_file.num_rows = 0;
+	g_file.num_cols = 0;
 	fd = open(cub_file, O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
 		if (line[0] == ' ' || line[0] == '1')
 		{
-			file.num_rows++;
-			if ((unsigned int)file.num_cols < get_strlen(line))
-				file.num_cols = get_strlen(line);
+			g_file.num_rows++;
+			if ((unsigned int)g_file.num_cols < get_strlen(line))
+				g_file.num_cols = get_strlen(line);
 		}
 		free_all(&line);
 	}

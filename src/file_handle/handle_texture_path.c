@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 18:37:57 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/25 14:29:10 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/25 18:33:57 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@ void	path_fill(char *text, char *tmp)
 	int i;
 
 	i = 0;
-	file.i += 2;
-	while (text[file.i] != '.' && text[file.i])
-		file.i++;
-	while (text[file.i] != '\n' && text[file.i])
+	g_file.i += 2;
+	while (text[g_file.i] != '.' && text[g_file.i])
+		g_file.i++;
+	while (text[g_file.i] != '\n' && text[g_file.i])
 	{
-		tmp[i] = text[file.i];
-		file.i++;
+		tmp[i] = text[g_file.i];
+		g_file.i++;
 		i++;
 	}
 }
 
 void	handle_texture_path(char *text)
 {
-	if (text[file.i] == 'N')
-		path_fill(text, file.no_texture);
-	else if (text[file.i] == 'S' && text[file.i + 1] == 'O')
-		path_fill(text, file.so_texture);
-	else if (text[file.i] == 'W')
-		path_fill(text, file.we_texture);
-	else if (text[file.i] == 'E')
-		path_fill(text, file.ea_texture);
-	else if (text[file.i] == 'S' && text[file.i + 1] == ' ')
-		path_fill(text, file.sprite_texture);
+	if (text[g_file.i] == 'N')
+		path_fill(text, g_file.no_texture);
+	else if (text[g_file.i] == 'S' && text[g_file.i + 1] == 'O')
+		path_fill(text, g_file.so_texture);
+	else if (text[g_file.i] == 'W')
+		path_fill(text, g_file.we_texture);
+	else if (text[g_file.i] == 'E')
+		path_fill(text, g_file.ea_texture);
+	else if (text[g_file.i] == 'S' && text[g_file.i + 1] == ' ')
+		path_fill(text, g_file.sprite_texture);
 }
