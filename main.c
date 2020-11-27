@@ -6,13 +6,13 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/26 13:33:34 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/27 09:48:38 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_struct()
+void	init_struct(void)
 {
 	g_data.px = g_file.py * SQUARE;
 	g_data.py = g_file.px * SQUARE;
@@ -25,7 +25,7 @@ void	init_struct()
 	g_data.side = 0;
 }
 
-int		texture_handle()
+int		texture_handle(void)
 {
 	int tx;
 
@@ -48,7 +48,7 @@ int		texture_handle()
 	return (0);
 }
 
-int		start_program()
+int		start_program(void)
 {
 	if (!(g_data.connection_id = mlx_init()))
 		return (0);

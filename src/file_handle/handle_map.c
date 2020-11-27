@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 14:15:44 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/26 18:46:17 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/27 09:30:13 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	get_player_position(char c, int row, int col)
 void	handle_map_line(char *line, int row, int i)
 {
 	g_file.map[row] = ft_memset(g_file.map[row], '.', g_file.num_cols + 1);
-	while (i < g_file.num_cols && line[i])
+	while (line[i])
 	{
 		if (line[i] == '2')
 			g_file.number_of_sprites++;

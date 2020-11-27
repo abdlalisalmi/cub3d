@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 11:54:56 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/26 18:47:43 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/27 09:42:21 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_map_ready(char *cub_file)
 	fd = open(cub_file, O_RDONLY);
 	while (get_next_line(fd, &line))
 		handle_map(line, g_file.row);
-	handle_map(line, g_file.row - 1);
+	handle_map(line, g_file.row);
 	close(fd);
 	if (g_file.player_found == 0)
 	{
@@ -78,6 +78,9 @@ void	file_handle(char *cub_file)
 		}
 		free_all(&line);
 	}
+    g_file.num_rows++;
+    if ((unsigned int)g_file.num_cols < get_strlen(line))
+				g_file.num_cols = get_strlen(line);
 	free_all(&line);
 	close(fd);
 	get_map_ready(cub_file);
