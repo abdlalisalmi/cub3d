@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/03 11:37:46 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/03 14:55:26 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,15 @@ int		main(int argc, char **argv)
 	// 	printf("%s\n", g_file.map[i]);
 	// }	
 
-	printf("WW: %d\n", g_file.window_w_td);
-	printf("WH: %d\n", g_file.window_h_td);
-	printf("NO: %s\n", g_file.no_texture);
-	printf("SO: %s\n", g_file.so_texture);
-	printf("WE: %s\n", g_file.we_texture);
-	printf("EA: %s\n", g_file.ea_texture);
-	printf("FLOOR: %d\n", g_file.floor_color);
-	printf("SKY: %d\n", g_file.sky_color);
-	printf("MAPTOUR: %d\n", g_file.map_tour);
+	// printf("WW: %d\n", g_file.window_w_td);
+	// printf("WH: %d\n", g_file.window_h_td);
+	// printf("NO: %s\n", g_file.no_texture);
+	// printf("SO: %s\n", g_file.so_texture);
+	// printf("WE: %s\n", g_file.we_texture);
+	// printf("EA: %s\n", g_file.ea_texture);
+	// printf("FLOOR: %d\n", g_file.floor_color);
+	// printf("SKY: %d\n", g_file.sky_color);
+	// printf("MAPTOUR: %d\n", g_file.map_tour);
 
 
 

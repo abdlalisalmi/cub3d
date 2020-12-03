@@ -4,4 +4,5 @@
 4- weiard element 				√
 5- file not fond 				√
 5- map not exist 				√
-sky & floor color				x
+6- sky & floor color			√
+6- Resolution					√
