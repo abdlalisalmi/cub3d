@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 20:12:25 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/26 18:25:53 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/27 09:51:40 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	cast_rays(int colume_id)
 	(g_rnorm.vert_hit_distance < g_rnorm.horz_hit_distance);
 }
 
-void	draw_rays()
+void	draw_rays(void)
 {
 	int		i;
 	int		colume_id;
 	float	ray_angle;
 
-    g_rays = (t_rays *)malloc(sizeof(t_rays) * g_file.window_w_td);
+	g_rays = (t_rays *)malloc(sizeof(t_rays) * g_file.window_w_td);
 	colume_id = 0;
 	ray_angle = g_data.rotation - (float)(FOV_ANGLE / 2);
 	i = 0;
@@ -65,5 +65,5 @@ void	draw_rays()
 		ray_angle += FOV_ANGLE / g_file.window_w_td;
 		i++;
 	}
-    free(g_rays);
+	free(g_rays);
 }

@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/26 13:48:07 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/03 10:35:03 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,8 @@ typedef struct			s_file
 	int					map_tour;
 	int					row;
 
-	int					px;
-	int					py;
+	float				px;
+	float				py;
 	float				player_view;
 	int					player_found;
 	int					save_flag;
@@ -223,11 +223,11 @@ t_norm					g_norm;
 t_bitmap				g_bitmap;
 
 void					draw_map(t_struct *data);
-void					draw_player();
-void					draw_rays();
+void					draw_player(void);
+void					draw_rays(void);
 void					horizontal_wall_hint_find(int colume_id);
 void					vertical_wall_hint_find(int colume_id);
-int						update();
+int						update(void);
 int						keypress(int keycode);
 int						keyrelease(int keycode);
 int						wall_check(float x, float y);
@@ -235,8 +235,8 @@ int						sprite_check(float x, float y);
 float					distance_between_points(float x1, float y1,
 							float x2, float y2);
 float					normalize_angle(float angle);
-void					draw_td_project();
-void					draw_sprites();
+void					draw_td_project(void);
+void					draw_sprites(void);
 
 void					args_check(int argc, char **argv);
 void					file_handle();
@@ -261,6 +261,7 @@ char					*ft_strnstr(const char *str, const char *chr,
 char					*ft_strrchr(const char *str, int c);
 int						ft_strncmp(const char *str1, const char *str2,
 							size_t n);
+int						ft_strcmp(char *s1, char *s2);
 void					ft_putnbr(int n);
 size_t					ft_strlen(const char *str);
 void					*ft_memcpy(void *dest, const void *src, size_t n);
@@ -274,6 +275,7 @@ char					*get_strjoin(char **line, char *tmp);
 void					free_all(char **tmp);
 
 void					exit_cub(int status);
+void					print_errors(char *message);
 int						destroy_window_button();
 
 #endif

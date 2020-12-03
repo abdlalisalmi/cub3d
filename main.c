@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/27 09:48:38 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/03 11:37:46 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	init_struct(void)
 {
-	g_data.px = g_file.py * SQUARE;
-	g_data.py = g_file.px * SQUARE;
+	g_data.px = (g_file.py + 0.5F) * SQUARE;
+	g_data.py = (g_file.px + 0.5F) * SQUARE;
 	g_data.walk_direction = 0;
 	g_data.move_speed = SQUARE / (SQUARE / 50);
 	g_data.turn_direction = 0;
 	g_data.turn_speed = 0.0000000005F;
 	g_data.rotation = PI / g_file.player_view;
-	g_data.rotation_speed = 0.04f;
+	g_data.rotation_speed = 0.01f;
 	g_data.side = 0;
 }
 
@@ -34,6 +34,13 @@ int		texture_handle(void)
 	g_texture[2].path = g_file.ea_texture;
 	g_texture[3].path = g_file.we_texture;
 	g_texture[4].path = g_file.sprite_texture;
+    
+    printf("\n");
+    printf("%s\n", g_texture[0].path);
+    printf("%s\n", g_texture[1].path);
+    printf("%s\n", g_texture[2].path);
+    printf("%s\n", g_texture[3].path);
+    printf("%s\n", g_texture[4].path);
 	tx = 0;
 	while (tx < 5)
 	{
@@ -78,7 +85,25 @@ int		main(int argc, char **argv)
 {
 	args_check(argc, argv);
 	file_handle(argv[1]);
-	file_components_check();
+
+	// for (int i = 0; i < g_file.num_cols; i++)
+	// {
+	// 	printf("%s\n", g_file.map[i]);
+	// }	
+
+	printf("WW: %d\n", g_file.window_w_td);
+	printf("WH: %d\n", g_file.window_h_td);
+	printf("NO: %s\n", g_file.no_texture);
+	printf("SO: %s\n", g_file.so_texture);
+	printf("WE: %s\n", g_file.we_texture);
+	printf("EA: %s\n", g_file.ea_texture);
+	printf("FLOOR: %d\n", g_file.floor_color);
+	printf("SKY: %d\n", g_file.sky_color);
+	printf("MAPTOUR: %d\n", g_file.map_tour);
+
+
+
+
 	init_struct();
 	start_program();
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 11:55:04 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/26 18:26:20 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/27 09:57:15 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,35 +71,40 @@ void	sort_sprites(void)
 	}
 }
 
+void	sprites_calcs(int i, float pplane_dist)
+{
+	g_sprites[i].distance = distance_between_points(g_sprites[i].x,
+	g_sprites[i].y, g_data.px, g_data.py);
+	g_sprites[i].angle = atan2f(g_sprites[i].y - g_data.py,
+	g_sprites[i].x - g_data.px);
+	g_sprites[i].angle = normalize_sprite(g_sprites[i].angle);
+	g_sprites[i].scale = (SQUARE / g_sprites[i].distance * pplane_dist);
+	g_sprites[i].offset_y = (g_file.window_h_td / 2.0F) -
+	(g_sprites[i].scale / 2);
+	g_sprites[i].offset_x = (((DEG(g_sprites[i].angle) -
+	DEG(g_data.rotation)) * g_file.window_w_td)
+	/ (60) + ((g_file.window_w_td / 2.0F) -
+	(g_sprites[i].scale / 2)));
+}
+
 void	draw_sprites(void)
 {
 	int		i;
 	float	pplane_dist;
 
-    g_sprites = (t_sprites *)malloc(sizeof(t_sprites) *
-        g_file.number_of_sprites);
-    init_sprites();
+	g_sprites = (t_sprites *)malloc(sizeof(t_sprites) *
+		g_file.number_of_sprites);
+	init_sprites();
 	pplane_dist = (g_file.window_w_td / 2.0F) / tanf((FOV_ANGLE) / 2);
 	i = 0;
 	while (i < g_file.number_of_sprites)
 	{
-		g_sprites[i].distance = distance_between_points(g_sprites[i].x,
-		g_sprites[i].y, g_data.px, g_data.py);
-		g_sprites[i].angle = atan2f(g_sprites[i].y - g_data.py,
-		g_sprites[i].x - g_data.px);
-		g_sprites[i].angle = normalize_sprite(g_sprites[i].angle);
-		g_sprites[i].scale = (SQUARE / g_sprites[i].distance * pplane_dist);
-		g_sprites[i].offset_y = (g_file.window_h_td / 2.0F) -
-		(g_sprites[i].scale / 2);
-		g_sprites[i].offset_x = (((DEG(g_sprites[i].angle) -
-		DEG(g_data.rotation)) * g_file.window_w_td)
-		/ (g_texture[4].width) + ((g_file.window_w_td / 2.0F) -
-		(g_sprites[i].scale / 2)));
+		sprites_calcs(i, pplane_dist);
 		i++;
 	}
 	sort_sprites();
 	i = -1;
 	while (++i < g_file.number_of_sprites)
 		render_sprite(i, g_sprites[i].offset_x, g_sprites[i].offset_y);
-    free(g_sprites);
+	free(g_sprites);
 }

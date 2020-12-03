@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   print_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/20 16:32:14 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/27 11:04:15 by aes-salm         ###   ########.fr       */
+/*   Created: 2020/12/03 10:31:54 by aes-salm          #+#    #+#             */
+/*   Updated: 2020/12/03 10:36:02 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-int		update(void)
+void	print_errors(char *message)
 {
-	draw_rays();
-	draw_td_project();
-	draw_player();
-	draw_sprites();
-	if (g_file.save_flag)
-		create_bmp_file();
-	mlx_put_image_to_window(g_data.connection_id, g_data.window_id,
-	g_data.image_td, 0, 0);
-	return (0);
+	write(1, "Error:\n", 7);
+	write(1, message, ft_strlen(message));
+	write(1, "\n", 1);
+	exit(EXIT_FAILURE);
 }

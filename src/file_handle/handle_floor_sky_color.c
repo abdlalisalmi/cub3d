@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 19:37:36 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/26 18:47:16 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/27 10:05:08 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		hexa_to_decimal(char *hexa, int len)
 		}
 		i--;
 	}
-    free_all(&hexa);
+	free_all(&hexa);
 	return (dec_val);
 }
 
@@ -78,9 +78,9 @@ int		color_convert(int r, int g, int b)
 	b_hexa = convert_to_hexa(b, 'X');
 	color = ft_strjoin(r_hexa, g_hexa);
 	color = ft_strjoin(color, b_hexa);
-    free_all(&r_hexa);
-    free_all(&g_hexa);
-    free_all(&b_hexa);
+	free_all(&r_hexa);
+	free_all(&g_hexa);
+	free_all(&b_hexa);
 	return (hexa_to_decimal(color, ft_strlen(color)));
 }
 

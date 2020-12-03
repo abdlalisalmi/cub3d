@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 10:59:50 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/26 12:26:42 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/27 09:51:57 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	fill_matrix_td(int i)
 		y++) + i] = g_file.floor_color;
 }
 
-void	draw_td_project()
+void	draw_td_project(void)
 {
 	int		i;
 

@@ -1,3 +1,7 @@
-1- --save flag √
-
-
+1- --save flag 					√
+2- space after texture path		x
+3- messing element				√
+4- weiard element 				√
+5- file not fond 				√
+5- map not exist 				√
+sky & floor color				x

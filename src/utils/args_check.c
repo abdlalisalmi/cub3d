@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 14:54:13 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/26 18:54:47 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/03 10:02:56 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		file_extention_check(char *filename, char *ext, char split)
 
 int		flag_check(char *flag)
 {
-	if (ft_strncmp(flag, "--save", ft_strlen(flag)) == 0)
+	if (ft_strcmp(flag, "--save") == 0)
 		return (1);
 	return (0);
 }

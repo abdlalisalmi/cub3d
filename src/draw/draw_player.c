@@ -6,13 +6,13 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 22:57:35 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/11/26 12:27:04 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/11/27 09:50:16 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	move_player()
+void	move_player(void)
 {
 	float	move_step;
 	float	next_px;
@@ -29,7 +29,7 @@ void	move_player()
 		g_data.py = next_py;
 }
 
-void	draw_player()
+void	draw_player(void)
 {
 	move_player();
 }
