@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 19:37:36 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/03 14:49:17 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/04 11:33:40 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	handle_floor_sky_color(char *text)
 	int		g;
 	int		b;
 	char	f_c;
-
 	f_c = text[g_file.i];
 	g_file.i++;
 	if (text[g_file.i] != ' ')
@@ -102,7 +101,15 @@ void	handle_floor_sky_color(char *text)
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		print_errors("RGB code should be between 0 and 255");
 	if (f_c == 'F')
+	{
+		if (g_file.floor_color != 0)
+			print_errors("Duplicate F elemant");
 		g_file.floor_color = color_convert(r, g, b);
+	}
 	else if (f_c == 'C')
+	{
+		if (g_file.sky_color != 0)
+			print_errors("Duplicate C elemant");
 		g_file.sky_color = color_convert(r, g, b);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 21:42:49 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/03 14:55:03 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/04 11:17:14 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int		get_value(const char *str)
 
 void	handle_resolution(char *text)
 {
+	if (g_file.window_w_td != 0 && g_file.window_w_td != 0)
+		print_errors("Duplicate elemant R");
 	g_file.i++;
 	g_file.window_w_td = get_value(text);
 	g_file.window_h_td = get_value(text);
