@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 19:37:36 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/04 11:33:40 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/04 11:56:31 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,49 +40,12 @@ int		get_color_value(const char *str)
 	return (sign == 1) ? (-result) : result;
 }
 
-int		hexa_to_decimal(char *hexa, int len)
-{
-	int		base;
-	int		dec_val;
-	int		i;
-
-	base = 1;
-	dec_val = 1;
-	i = len - 1;
-	while (i >= 0)
-	{
-		if (hexa[i] >= '0' && hexa[i] <= '9')
-		{
-			dec_val += (hexa[i] - 48) * base;
-			base = base * 16;
-		}
-		else if (hexa[i] >= 'A' && hexa[i] <= 'F')
-		{
-			dec_val += (hexa[i] - 55) * base;
-			base = base * 16;
-		}
-		i--;
-	}
-	free_all(&hexa);
-	return (dec_val);
-}
-
 int		color_convert(int r, int g, int b)
 {
-	char	*r_hexa;
-	char	*g_hexa;
-	char	*b_hexa;
-	char	*color;
+	int	result;
 
-	r_hexa = convert_to_hexa(r, 'X');
-	g_hexa = convert_to_hexa(g, 'X');
-	b_hexa = convert_to_hexa(b, 'X');
-	color = ft_strjoin(r_hexa, g_hexa);
-	color = ft_strjoin(color, b_hexa);
-	free_all(&r_hexa);
-	free_all(&g_hexa);
-	free_all(&b_hexa);
-	return (hexa_to_decimal(color, ft_strlen(color)));
+	result = (r * 256 * 256) + (g * 256) + b;
+	return (result);
 }
 
 void	handle_floor_sky_color(char *text)

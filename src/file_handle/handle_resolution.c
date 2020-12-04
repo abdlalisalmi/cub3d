@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 21:42:49 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/04 11:17:14 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/04 17:11:19 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	handle_resolution(char *text)
 	g_file.i++;
 	g_file.window_w_td = get_value(text);
 	g_file.window_h_td = get_value(text);
-	printf("WW: %d\n", g_file.window_w_td);
-	printf("WH: %d\n", g_file.window_h_td);
 	if (g_file.window_w_td <= 0 || g_file.window_h_td <= 0)
 		print_errors("The resolution, should be greater than 0");
 	if (g_file.window_w_td > 2560)

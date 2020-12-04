@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/03 14:55:26 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/04 18:01:37 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_struct(void)
 	g_data.turn_direction = 0;
 	g_data.turn_speed = 0.0000000005F;
 	g_data.rotation = PI / g_file.player_view;
-	g_data.rotation_speed = 0.01f;
+	g_data.rotation_speed = 0.02f;
 	g_data.side = 0;
 }
 
@@ -34,13 +34,6 @@ int		texture_handle(void)
 	g_texture[2].path = g_file.ea_texture;
 	g_texture[3].path = g_file.we_texture;
 	g_texture[4].path = g_file.sprite_texture;
-    
-    printf("\n");
-    printf("%s\n", g_texture[0].path);
-    printf("%s\n", g_texture[1].path);
-    printf("%s\n", g_texture[2].path);
-    printf("%s\n", g_texture[3].path);
-    printf("%s\n", g_texture[4].path);
 	tx = 0;
 	while (tx < 5)
 	{
@@ -52,6 +45,14 @@ int		texture_handle(void)
 			return (1);
 		tx++;
 	}
+	tx = 0;
+	while (tx < 4)
+	{
+		if (g_texture[tx].width < SQUARE || g_texture[tx].height < SQUARE)
+			print_errors("The texture W/H should be '>' or '=' TileSize");
+		tx++;
+	}
+	
 	return (0);
 }
 
@@ -89,7 +90,7 @@ int		main(int argc, char **argv)
 	// for (int i = 0; i < g_file.num_cols; i++)
 	// {
 	// 	printf("%s\n", g_file.map[i]);
-	// }	
+	// }
 
 	// printf("WW: %d\n", g_file.window_w_td);
 	// printf("WH: %d\n", g_file.window_h_td);
@@ -100,9 +101,6 @@ int		main(int argc, char **argv)
 	// printf("FLOOR: %d\n", g_file.floor_color);
 	// printf("SKY: %d\n", g_file.sky_color);
 	// printf("MAPTOUR: %d\n", g_file.map_tour);
-
-
-
 
 	init_struct();
 	start_program();

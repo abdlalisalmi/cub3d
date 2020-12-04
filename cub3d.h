@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/03 10:35:03 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/04 17:55:48 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define SQUARE 1000
+# define SQUARE 512
 # define BUFFER_SIZE 2048
 
 # define PI 3.14159265358979323846
