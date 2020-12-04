@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/04 18:01:37 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/04 18:11:59 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_struct(void)
 	g_data.px = (g_file.py + 0.5F) * SQUARE;
 	g_data.py = (g_file.px + 0.5F) * SQUARE;
 	g_data.walk_direction = 0;
-	g_data.move_speed = SQUARE / (SQUARE / 50);
+	g_data.move_speed = SQUARE / (SQUARE / 40);
 	g_data.turn_direction = 0;
 	g_data.turn_speed = 0.0000000005F;
 	g_data.rotation = PI / g_file.player_view;
@@ -48,7 +48,7 @@ int		texture_handle(void)
 	tx = 0;
 	while (tx < 4)
 	{
-		if (g_texture[tx].width < SQUARE || g_texture[tx].height < SQUARE)
+		if (g_texture[tx].width != SQUARE || g_texture[tx].height != SQUARE)
 			print_errors("The texture W/H should be '>' or '=' TileSize");
 		tx++;
 	}

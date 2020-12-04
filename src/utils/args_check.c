@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 14:54:13 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/03 10:02:56 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/04 18:15:59 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,10 @@ void	args_check(int argc, char **argv)
 	else
 	{
 		if (!file_extention_check(argv[1], ".cub", '.'))
-		{
-			write(1, "Error\nYou have to add a file '.cub' as argument\n", 54);
-			exit(EXIT_FAILURE);
-		}
+			print_errors("You have to add a file '.cub' as argument");
 		if (argc == 3 && flag_check(argv[2]))
 			g_file.save_flag = 1;
 		else if (argc == 3 && !flag_check(argv[2]))
-		{
-			write(1, "Error\nEnter a valid flag like --save !!\n", 52);
-			exit_cub(EXIT_FAILURE);
-		}
+		print_errors("Enter a valid flag like --save");
 	}
 }
