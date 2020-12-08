@@ -7,3 +7,9 @@
 6- sky & floor color			√
 6- Resolution					√
 7- Duplicate element			√
+8- 0 > R > MACRES ; should work x
+9- No map provided              x
+
+Resolution
+sky and floor values spaces
+

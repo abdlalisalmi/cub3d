@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:58:15 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/04 18:11:59 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/05 10:29:51 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,13 @@ void	init_struct(void)
 	g_data.side = 0;
 }
 
-int		texture_handle(void)
+int		texture_handle(int tx)
 {
-	int tx;
-
-	g_texture[0].path = g_file.no_texture;
-	g_texture[1].path = g_file.so_texture;
-	g_texture[2].path = g_file.ea_texture;
-	g_texture[3].path = g_file.we_texture;
+	g_texture[1].path = g_file.no_texture;
+	g_texture[0].path = g_file.so_texture;
+	g_texture[3].path = g_file.ea_texture;
+	g_texture[2].path = g_file.we_texture;
 	g_texture[4].path = g_file.sprite_texture;
-	tx = 0;
 	while (tx < 5)
 	{
 		if (!(g_texture[tx].img = mlx_xpm_file_to_image(g_data.connection_id,
@@ -52,7 +49,6 @@ int		texture_handle(void)
 			print_errors("The texture W/H should be '>' or '=' TileSize");
 		tx++;
 	}
-	
 	return (0);
 }
 
@@ -69,7 +65,7 @@ int		start_program(void)
 	if (!(g_data.img_matrix_td = (int*)mlx_get_data_addr(g_data.image_td,
 		&g_data.bits_per_pixel, &g_data.size_line, &g_data.endian)))
 		return (0);
-	if (texture_handle())
+	if (texture_handle(0))
 	{
 		write(1, "Error\nSomething wrong with the Textures !!\n", 45);
 		exit_cub(EXIT_FAILURE);
@@ -86,22 +82,6 @@ int		main(int argc, char **argv)
 {
 	args_check(argc, argv);
 	file_handle(argv[1]);
-
-	// for (int i = 0; i < g_file.num_cols; i++)
-	// {
-	// 	printf("%s\n", g_file.map[i]);
-	// }
-
-	// printf("WW: %d\n", g_file.window_w_td);
-	// printf("WH: %d\n", g_file.window_h_td);
-	// printf("NO: %s\n", g_file.no_texture);
-	// printf("SO: %s\n", g_file.so_texture);
-	// printf("WE: %s\n", g_file.we_texture);
-	// printf("EA: %s\n", g_file.ea_texture);
-	// printf("FLOOR: %d\n", g_file.floor_color);
-	// printf("SKY: %d\n", g_file.sky_color);
-	// printf("MAPTOUR: %d\n", g_file.map_tour);
-
 	init_struct();
 	start_program();
 	return (EXIT_SUCCESS);

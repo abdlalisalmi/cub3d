@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 10:59:50 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/04 17:45:41 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/04 18:56:22 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int		wall_texture(int i, int y)
 		/ (float)g_tr_project.project_wall_height);
 		g_norm.tx_offset_x = g_norm.tx_offset_x < 0 ? 0 : g_norm.tx_offset_x;
 		g_norm.tx_offset_y = g_norm.tx_offset_y < 0 ? 0 : g_norm.tx_offset_y;
-		
 		g_texture[g_norm.tx].color = g_texture[g_norm.tx].colors[(SQUARE
 		* g_norm.tx_offset_y) + g_norm.tx_offset_x];
 		g_data.img_matrix_td[(g_file.window_w_td * y) + i] =

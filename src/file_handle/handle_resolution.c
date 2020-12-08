@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 21:42:49 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/04 17:11:19 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/08 17:12:18 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ int		get_value(const char *str)
 {
 	int		result;
 	int		sign;
+	int		max;
 
 	result = 0;
 	sign = 0;
+	max = 0;
 	while (str[g_file.i] != '\n' && str[g_file.i] == ' ')
-	 	g_file.i++;
+		g_file.i++;
 	sign = (str[g_file.i] == '-') ? 1 : 0;
 	while (str[g_file.i] == '-' || str[g_file.i] == '+')
 		g_file.i++;
@@ -30,13 +32,18 @@ int		get_value(const char *str)
 			print_errors("Wrong value in the Resolution");
 		result = result * 10;
 		result += (int)str[g_file.i] - '0';
+		if (result >= 20000)
+			max = 1;
 		g_file.i++;
 	}
+	if (max)
+		return (max && sign) ? (-20000) : (20000);
 	return (sign == 1) ? (-result) : result;
 }
 
 void	handle_resolution(char *text)
 {
+	g_file.map_tour++;
 	if (g_file.window_w_td != 0 && g_file.window_w_td != 0)
 		print_errors("Duplicate elemant R");
 	g_file.i++;
@@ -46,10 +53,6 @@ void	handle_resolution(char *text)
 		print_errors("The resolution, should be greater than 0");
 	if (g_file.window_w_td > 2560)
 		g_file.window_w_td = 2560;
-	else if (g_file.window_w_td < 50)
-		g_file.window_w_td = 50;
 	if (g_file.window_h_td > 1800)
 		g_file.window_h_td = 1800;
-	else if (g_file.window_h_td < 50)
-		g_file.window_h_td = 50;
 }

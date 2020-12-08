@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/04 17:55:48 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/07 11:45:30 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,11 @@ typedef struct			s_file
 	int					window_w_td;
 	int					window_h_td;
 
-	char				no_texture[100];
-	char				so_texture[100];
-	char				we_texture[100];
-	char				ea_texture[100];
-	char				sprite_texture[100];
+	char				no_texture[200];
+	char				so_texture[200];
+	char				we_texture[200];
+	char				ea_texture[200];
+	char				sprite_texture[200];
 	int					number_of_sprites;
 
 	int					floor_color;
@@ -147,6 +147,10 @@ typedef struct			s_file
 	float				player_view;
 	int					player_found;
 	int					save_flag;
+
+	int					r;
+	int					g;
+	int					b;
 
 }						t_file;
 

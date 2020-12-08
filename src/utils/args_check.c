@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 14:54:13 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/04 18:15:59 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/07 11:20:30 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	args_check(int argc, char **argv)
 		if (argc == 3 && flag_check(argv[2]))
 			g_file.save_flag = 1;
 		else if (argc == 3 && !flag_check(argv[2]))
-		print_errors("Enter a valid flag like --save");
+			print_errors("Enter a valid flag like --save");
 	}
 }

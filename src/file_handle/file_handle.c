@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 11:54:56 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/03 11:36:08 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/05 10:36:04 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,15 @@ void	text_handle(char *text)
 	while (text[g_file.i])
 	{
 		if (text[g_file.i] == 'R')
-		{
 			handle_resolution(text);
-			g_file.map_tour++;
-		}
 		else if ((text[g_file.i] == 'N' && text[g_file.i + 1] == 'O') ||
-            (text[g_file.i] == 'S' && text[g_file.i + 1] == 'O') ||
+			(text[g_file.i] == 'S' && text[g_file.i + 1] == 'O') ||
 			(text[g_file.i] == 'W' && text[g_file.i + 1] == 'E') ||
 			(text[g_file.i] == 'E' && text[g_file.i + 1] == 'A') ||
 			(text[g_file.i] == 'S' && text[g_file.i + 1] == ' '))
-		{
 			handle_texture_path(text);
-			g_file.map_tour++;
-		}
 		else if (text[g_file.i] == 'F' || text[g_file.i] == 'C')
-		{
 			handle_floor_sky_color(text);
-			g_file.map_tour++;
-		}
 		else if (g_file.map_tour < 8 && (text[g_file.i] != 'R' &&
 			text[g_file.i] != 'N' && text[g_file.i] != 'S' &&
 			text[g_file.i] != 'W' && text[g_file.i] != 'E' &&
