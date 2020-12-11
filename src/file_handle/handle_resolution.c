@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 21:42:49 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/08 17:12:18 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/11 13:07:21 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ int		get_value(const char *str)
 {
 	int		result;
 	int		sign;
-	int		max;
 
 	result = 0;
 	sign = 0;
-	max = 0;
 	while (str[g_file.i] != '\n' && str[g_file.i] == ' ')
 		g_file.i++;
 	sign = (str[g_file.i] == '-') ? 1 : 0;
@@ -33,11 +31,13 @@ int		get_value(const char *str)
 		result = result * 10;
 		result += (int)str[g_file.i] - '0';
 		if (result >= 20000)
-			max = 1;
+			g_file.max_int = 1;
 		g_file.i++;
 	}
-	if (max)
-		return (max && sign) ? (-20000) : (20000);
+	while (str[g_file.i] == ' ')
+		g_file.i++;
+	if (g_file.max_int)
+		return (g_file.max_int && sign) ? (-20000) : (20000);
 	return (sign == 1) ? (-result) : result;
 }
 

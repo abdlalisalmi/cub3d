@@ -1,13 +1,13 @@
-R 1280 800
+R       1200    800     
 
-NO ./src/texture/2.XPM
-SO ./src/texture/1.xpm
-WE ./src/texture/2.xpm
-EA ./src/texture/2.xpm
+NO ./src/texture/2.XPM      
+SO ./src/texture/1.xpm       
+WE ./src/texture/2.xpm    
+EA ./src/texture/2.xpm    
 
-S ./src/texture/sprite.xpm
+S ./src/texture/sprite.xpm   
 
-F 47, 53, 40
+F     47, 53     ,  40
 C 0, 153, 153
 
 

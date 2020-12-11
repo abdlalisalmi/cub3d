@@ -6,38 +6,38 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 19:37:36 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/07 11:24:24 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/11 13:23:45 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-int		get_color_value(const char *str)
+int		get_color_value(const char *s, int value_found)
 {
 	int		result;
 	int		sign;
-	int		value_found;
 
 	result = 0;
 	sign = 0;
-	value_found = -1;
-	while (str[g_file.i] != '\n' &&
-		(str[g_file.i] == ' ' || str[g_file.i] == ','))
+	while (s[g_file.i] != '\n' &&
+		(s[g_file.i] == ' ' || s[g_file.i] == ','))
 		g_file.i++;
-	sign = (str[g_file.i] == '-') ? 1 : 0;
-	while (str[g_file.i] == '-' || str[g_file.i] == '+')
+	sign = (s[g_file.i] == '-') ? 1 : 0;
+	while (s[g_file.i] == '-' || s[g_file.i] == '+')
 		g_file.i++;
-	while (str[g_file.i] != ',' && str[g_file.i] != '\n')
+	while (s[g_file.i] != ',' && s[g_file.i] != '\n' && s[g_file.i] != ' ')
 	{
-		if (!(str[g_file.i] >= '0' && str[g_file.i] <= '9'))
+		if (!(s[g_file.i] >= '0' && s[g_file.i] <= '9'))
 			print_errors("Wrong value in the floor or the sky");
 		value_found = 1;
 		result = result * 10;
-		result += (int)str[g_file.i] - '0';
+		result += (int)s[g_file.i] - '0';
 		g_file.i++;
 	}
-	if (value_found < 0)
-		return (-1);
+	while (s[g_file.i] == ' ')
+		g_file.i++;
+	if (!value_found)
+		print_errors("Wrong value in the floor or the sky");
 	return (sign == 1) ? (-result) : result;
 }
 
@@ -58,9 +58,9 @@ void	handle_floor_sky_color(char *text)
 	g_file.i++;
 	if (text[g_file.i] != ' ')
 		print_errors("We need more space, please");
-	g_file.r = get_color_value(text);
-	g_file.g = get_color_value(text);
-	g_file.b = get_color_value(text);
+	g_file.r = get_color_value(text, 0);
+	g_file.g = get_color_value(text, 0);
+	g_file.b = get_color_value(text, 0);
 	if ((g_file.r < 0 || g_file.r > 255) || (g_file.g < 0 ||
 		g_file.g > 255) || (g_file.b < 0 || g_file.b > 255))
 		print_errors("RGB code should be between 0 and 255");

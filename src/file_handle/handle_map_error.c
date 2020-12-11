@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 14:17:27 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/03 11:20:36 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/08 17:31:46 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	error_found(int y, int x)
 {
-	write(1, "Error:\nThe map is opened in X=", 30);
+	write(1, "Error\nThe map is opened in X=", 29);
 	ft_putnbr(x + 1);
 	write(1, " Y=", 3);
 	ft_putnbr(y);

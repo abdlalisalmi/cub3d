@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:20 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/07 11:45:30 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/11 13:24:40 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ typedef struct			s_file
 	int					g;
 	int					b;
 
+	int					max_int;
 }						t_file;
 
 typedef struct			s_rays_norm
