@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 14:15:44 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/03 11:28:09 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/14 11:56:42 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,13 @@ void	handle_map(char *line, int row)
 		handle_map_line(line, row, 0);
 		g_file.row++;
 	}
-	else if (line[0] == '\t')
+	else if (line[0] != 'R' && line[0] != '\0' &&
+		line[0] != 'N' && line[0] != 'S' &&
+		line[0] != 'W' && line[0] != 'E' &&
+		line[0] != 'F' && line[0] != 'C')
 	{
-		write(1, "Error\nYou are not allowed", 25);
-		write(1, " to add tabs on the map file. !!\n", 33);
 		free_all(&line);
-		exit(EXIT_FAILURE);
+		print_errors("A weird element in the map file!");
 	}
 	free_all(&line);
 }

@@ -6,7 +6,7 @@
 /*   By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 11:54:56 by aes-salm          #+#    #+#             */
-/*   Updated: 2020/12/11 13:03:36 by aes-salm         ###   ########.fr       */
+/*   Updated: 2020/12/14 11:50:42 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	get_map_ready(char *cub_file)
 	handle_map(line, g_file.row);
 	close(fd);
 	if (g_file.player_found == 0)
-	{
 		print_errors("You don't have any player or MAP");
-	}
+	if (g_file.player_found > 1)
+		print_errors("You have more than one player");
 	handle_map_error();
 }
 
