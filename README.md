@@ -6,6 +6,13 @@ The goal of cub3d is to make something using raycasting like <a href="https://fr
   <img src="https://github.com/abdlalisalmi/cub3d/blob/master/src/screenshot.png" width="85%">
 </p>
 
+## Prerequisites:
+The project runs using the MiniLibX, a simplified version of the Xlib. It can therefore only run in MacOSX, preferably on a computer with a solid CPU !
+
+## How to run it:
+Using ``make run`` will make and run the game.
+You can also use ``make`` to generate the ``cub3D`` executable. You can launch it with ``./cub3D map.cub``.
+
 ## Controls:
 - You can move around the maze with ``W`` ``A`` ``S`` ``D``.
 - You can also rotate the view with the directional arrows ``←`` and ``→``.
