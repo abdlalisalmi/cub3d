@@ -12,6 +12,8 @@ The project runs using the MiniLibX, a simplified version of the Xlib. It can th
 ## How to run it:
 Using ``make run`` will make and run the game.
 You can also use ``make`` to generate the ``cub3D`` executable. You can launch it with ``./cub3D map.cub``.
+<br>
+You can also create just a secreen shot with ``make save``, or ``./cub3D map.cub --save``.
 
 ## Controls:
 - You can move around the maze with ``W`` ``A`` ``S`` ``D``.
